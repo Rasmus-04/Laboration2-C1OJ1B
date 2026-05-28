@@ -1,10 +1,10 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿using Laboration_2.Vy.AddEventWindow;
 using Laboration_2.Vy.AddMemberVy;
 using Laboration_2.Vy.AddSpelWindow;
-using Laboration_2.Vy.AddEventWindow;
+using System.Windows;
+using System.Windows.Controls;
 
-namespace Laboration_2.Vy.MenuBar
+namespace Laboration_2.View.UserControls.MenuBar
 {
     /// <summary>
     /// Interaction logic for MenuBar.xaml
@@ -27,7 +27,8 @@ namespace Laboration_2.Vy.MenuBar
             parentWindow.Opacity = .4;
             bool? result = addMemberWindow.ShowDialog();
 
-            if (result == true) { 
+            if (result == true)
+            {
                 mainWindow.Members.Add(addMemberWindow.CreatedMember);
             }
             parentWindow.Opacity = 1;

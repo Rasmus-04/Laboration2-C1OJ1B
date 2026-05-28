@@ -2,22 +2,23 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Laboration_2.Vy.MedlemarVy
+namespace Laboration_2.View.UserControls.MembersListView
 {
     /// <summary>
-    /// Interaction logic for MedlemarVy.xaml
+    /// Interaction logic for MembersListView.xaml
     /// </summary>
-    public partial class MedlemarVy : UserControl
+    public partial class MembersListView : UserControl
     {
-        public MedlemarVy()
+        public MembersListView()
         {
             InitializeComponent();
         }
 
+
         private void btnRemoveMember_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             MainWindow mainWindow = (MainWindow)Window.GetWindow(this);
-            
+
             if (lvMembers.SelectedItem == null)
                 return;
             MessageBoxResult result = MessageBox.Show("Är du säker att du vill ta bort denna medlem?", "Confirm Deletion", MessageBoxButton.YesNo, MessageBoxImage.Warning);
