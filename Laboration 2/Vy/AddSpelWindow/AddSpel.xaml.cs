@@ -1,0 +1,45 @@
+﻿using System.Windows;
+
+namespace Laboration_2.Vy.AddSpelWindow
+{
+    /// <summary>
+    /// Interaction logic for AddSpel.xaml
+    /// </summary>
+    public partial class AddSpel : Window
+    {
+
+        public Spel CreatedSpel { get; private set; }
+
+        public AddSpel(Window parentWindow)
+        {
+            InitializeComponent();
+            Owner = parentWindow;
+        }
+
+        private void CancelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void AddUserBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string titel = txtTitel.Text;
+            int max;
+            int min;
+
+            if (string.IsNullOrEmpty(titel))
+                MessageBox.Show("Titel måste vara ifyllt.", "Felaktig Titel", MessageBoxButton.OK, MessageBoxImage.Information);
+            else if (!int.TryParse(maxPlayers.Text, out max))
+                MessageBox.Show("Alla fält måste vara ifyllda!", "Felaktig inmatning", MessageBoxButton.OK, MessageBoxImage.Information);
+            else if (!int.TryParse(minPlayers.Text, out min))
+                MessageBox.Show("Alla fält måste vara ifyllda!", "Felaktig inmatning", MessageBoxButton.OK, MessageBoxImage.Information);
+            else
+            {
+                Spel newSpel = new Spel(titel, max, min);
+                CreatedSpel = newSpel;
+                DialogResult = true;
+                Close();
+            }
+        }
+    }
+}
