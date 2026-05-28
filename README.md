@@ -1,4 +1,4 @@
-# Laboration 1 Grupp 8
+# Laboration 2 Grupp 8
 
 # Brädhörnan
 
