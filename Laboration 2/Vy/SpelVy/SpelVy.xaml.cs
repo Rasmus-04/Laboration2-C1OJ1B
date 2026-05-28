@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.ComponentModel;
 using System.Windows.Data;
+using Laboration_2.Model;
 
 namespace Laboration_2.Vy.SpelVy
 {

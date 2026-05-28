@@ -1,4 +1,5 @@
-﻿using Laboration_2.Vy.AddDeltagreWindow;
+﻿using Laboration_2.Model;
+using Laboration_2.Vy.AddDeltagreWindow;
 using Laboration_2.Vy.EventDeltagareWindow;
 using System.ComponentModel;
 using System.Windows;

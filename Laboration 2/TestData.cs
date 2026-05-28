@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using Laboration_2.Model;
+using System.Collections.ObjectModel;
 
 namespace Laboration_2
 {

@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using Laboration_2.Model;
+using System.Collections.ObjectModel;
 using System.Windows;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 

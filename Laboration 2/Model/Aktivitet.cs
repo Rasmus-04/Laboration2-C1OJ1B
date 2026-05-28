@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
-namespace Laboration_2
+namespace Laboration_2.Model
 {
     public class Aktivitet : INotifyPropertyChanged
     {

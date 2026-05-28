@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Laboration_2.Model;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Laboration_2.Vy.MedlemarVy
