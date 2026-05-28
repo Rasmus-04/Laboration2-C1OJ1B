@@ -7,7 +7,7 @@
         xmlns:MenuBar="clr-namespace:Laboration_2.View.UserControls.MenuBar"
         xmlns:MemberList="clr-namespace:Laboration_2.View.UserControls.MemberListView"
         xmlns:AllaSpelVy="clr-namespace:Laboration_2.View.UserControls.GameListView"
-        xmlns:AktivitetVy="clr-namespace:Laboration_2.Vy.EventVy"
+        xmlns:AktivitetVy="clr-namespace:Laboration_2.View.UserControls.EventListView"
         
         mc:Ignorable="d"
         Title="Laboration 2 Grupp 8" Height="450" Width="1000">
@@ -29,7 +29,7 @@
 
             <MemberList:MemberListView Grid.Column="0" Margin="5"/>
             <AllaSpelVy:GameListView Grid.Column="1" Margin="5"/>
-            <AktivitetVy:EventVy Grid.Column="2" Margin="5"/>
+            <AktivitetVy:EventListView Grid.Column="2" Margin="5"/>
         </Grid>
         
     </Grid>

@@ -1,16 +1,17 @@
 ﻿using Laboration_2.Model;
 using System.Windows;
 
-namespace Laboration_2.Vy.AddMemberVy
+namespace Laboration_2.View.Windows.RegisterMemberWindow
 {
     /// <summary>
-    /// Interaction logic for AddMember.xaml
+    /// Interaction logic for RegisterMemberWindow.xaml
     /// </summary>
-    public partial class AddMember : Window
+    public partial class RegisterMemberWindow : Window
     {
+
         public Medlem CreatedMember { get; private set; }
 
-        public AddMember(Window parentWindow)
+        public RegisterMemberWindow(Window parentWindow)
         {
             InitializeComponent();
             Owner = parentWindow;

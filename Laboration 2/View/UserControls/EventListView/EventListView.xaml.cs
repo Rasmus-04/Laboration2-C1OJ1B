@@ -6,21 +6,21 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 
-namespace Laboration_2.Vy.EventVy
+namespace Laboration_2.View.UserControls.EventListView
 {
     /// <summary>
-    /// Interaction logic for EventVy.xaml
+    /// Interaction logic for EventListView.xaml
     /// </summary>
-    public partial class EventVy : UserControl
+    public partial class EventListView : UserControl
     {
-        public EventVy()
+        public EventListView()
         {
             InitializeComponent();
-            Loaded += EventVy_Loaded;
+            Loaded += EventListView_Loaded;
         }
 
         // Sortera aktiviteterna i ListViewn efter datum när sidan laddas
-        private void EventVy_Loaded(object sender, RoutedEventArgs e)
+        private void EventListView_Loaded(object sender, RoutedEventArgs e)
         {
             // ItemsSource may not be set yet when Loaded fires. Use lvAktiviteter.Items as a fallback
             // and guard against a null view to avoid NullReferenceException.
@@ -48,7 +48,7 @@ namespace Laboration_2.Vy.EventVy
 
         private void btnVisaDeltagare_Click(object sender, RoutedEventArgs e)
         {
-            if(lvAktiviteter.SelectedItem == null)
+            if (lvAktiviteter.SelectedItem == null)
                 return;
 
             Window parentWindow = Window.GetWindow(this);

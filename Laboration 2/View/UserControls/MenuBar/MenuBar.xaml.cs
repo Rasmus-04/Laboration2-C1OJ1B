@@ -1,6 +1,6 @@
 ﻿using Laboration_2.Vy.AddEventWindow;
-using Laboration_2.Vy.AddMemberVy;
 using Laboration_2.Vy.AddSpelWindow;
+using Laboration_2.View.Windows.RegisterMemberWindow;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -23,7 +23,7 @@ namespace Laboration_2.View.UserControls.MenuBar
             // För tillgång till members listan i MainWindow.xaml.cs
             MainWindow mainWindow = (MainWindow)parentWindow;
 
-            AddMember addMemberWindow = new AddMember(parentWindow);
+            RegisterMemberWindow addMemberWindow = new RegisterMemberWindow(parentWindow);
             parentWindow.Opacity = .4;
             bool? result = addMemberWindow.ShowDialog();
 
