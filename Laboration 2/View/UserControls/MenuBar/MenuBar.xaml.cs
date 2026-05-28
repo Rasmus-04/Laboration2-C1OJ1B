@@ -1,5 +1,5 @@
-﻿using Laboration_2.Vy.AddEventWindow;
-using Laboration_2.Vy.AddSpelWindow;
+﻿using Laboration_2.View.Windows.CreateEventWindow;
+using Laboration_2.View.Windows.CreateGameWindow;
 using Laboration_2.View.Windows.RegisterMemberWindow;
 using System.Windows;
 using System.Windows.Controls;
@@ -42,7 +42,7 @@ namespace Laboration_2.View.UserControls.MenuBar
             // För tillgång till allaSpel listan i MainWindow.xaml.cs
             MainWindow mainWindow = (MainWindow)parentWindow;
 
-            AddSpel nyttSpelWindow = new AddSpel(parentWindow);
+            CreateGameWindow nyttSpelWindow = new CreateGameWindow(parentWindow);
             parentWindow.Opacity = .4;
             bool? result = nyttSpelWindow.ShowDialog();
 
@@ -60,7 +60,7 @@ namespace Laboration_2.View.UserControls.MenuBar
             // För tillgång till AllaAktiviteter listan i MainWindow.xaml.cs
             MainWindow mainWindow = (MainWindow)parentWindow;
 
-            AddEvent NyttEventWindow = new AddEvent(parentWindow, mainWindow.AllaSpel);
+            CreateEventWindow NyttEventWindow = new CreateEventWindow(parentWindow, mainWindow.AllaSpel);
 
 
             parentWindow.Opacity = .4;

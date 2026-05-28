@@ -3,18 +3,18 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace Laboration_2.Vy.AddDeltagreWindow
+namespace Laboration_2.View.Windows.AddMemberToEventWindow
 {
     /// <summary>
-    /// Interaction logic for AddDeltagareWindow.xaml
+    /// Interaction logic for AddMemberToEventWindow.xaml
     /// </summary>
-    public partial class AddDeltagareWindow : Window
+    public partial class AddMemberToEventWindow : Window
     {
 
         List<Medlem> GiltligaMedlemmar = new List<Medlem>();
 
         Aktivitet aktivitet { get; set; }
-        public AddDeltagareWindow(Window parentWindow, Aktivitet aktivitet, ObservableCollection<Medlem> medlemar)
+        public AddMemberToEventWindow(Window parentWindow, Aktivitet aktivitet, ObservableCollection<Medlem> medlemar)
         {
             Owner = parentWindow;
             InitializeComponent();

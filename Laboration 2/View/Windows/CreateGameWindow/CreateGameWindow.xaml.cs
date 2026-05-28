@@ -1,17 +1,17 @@
 ﻿using Laboration_2.Model;
 using System.Windows;
 
-namespace Laboration_2.Vy.AddSpelWindow
+namespace Laboration_2.View.Windows.CreateGameWindow
 {
     /// <summary>
-    /// Interaction logic for AddSpel.xaml
+    /// Interaction logic for CreateGameWindow.xaml
     /// </summary>
-    public partial class AddSpel : Window
+    public partial class CreateGameWindow : Window
     {
 
         public Spel CreatedSpel { get; private set; }
 
-        public AddSpel(Window parentWindow)
+        public CreateGameWindow(Window parentWindow)
         {
             InitializeComponent();
             Owner = parentWindow;

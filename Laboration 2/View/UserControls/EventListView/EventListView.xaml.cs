@@ -1,6 +1,6 @@
 ﻿using Laboration_2.Model;
-using Laboration_2.Vy.AddDeltagreWindow;
-using Laboration_2.Vy.EventDeltagareWindow;
+using Laboration_2.View.Windows.AddMemberToEventWindow;
+using Laboration_2.View.Windows.EventInfoWindow;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -56,8 +56,7 @@ namespace Laboration_2.View.UserControls.EventListView
             // För tillgång till listorna i MainWindow.xaml.cs
             MainWindow mainWindow = (MainWindow)parentWindow;
 
-            DeltagareWindow deltagareWindow = new DeltagareWindow(parentWindow, (Aktivitet)lvAktiviteter.SelectedItem);
-
+            EventInfoWindow deltagareWindow = new EventInfoWindow(parentWindow, (Aktivitet)lvAktiviteter.SelectedItem);
             parentWindow.Opacity = .4;
             deltagareWindow.ShowDialog();
             parentWindow.Opacity = 1;
@@ -73,7 +72,7 @@ namespace Laboration_2.View.UserControls.EventListView
             // För tillgång till listorna i MainWindow.xaml.cs
             MainWindow mainWindow = (MainWindow)parentWindow;
 
-            AddDeltagareWindow deltagareWindow = new AddDeltagareWindow(parentWindow, (Aktivitet)lvAktiviteter.SelectedItem, mainWindow.Members);
+            AddMemberToEventWindow deltagareWindow = new AddMemberToEventWindow(parentWindow, (Aktivitet)lvAktiviteter.SelectedItem, mainWindow.Members);
 
             parentWindow.Opacity = .4;
             deltagareWindow.ShowDialog();

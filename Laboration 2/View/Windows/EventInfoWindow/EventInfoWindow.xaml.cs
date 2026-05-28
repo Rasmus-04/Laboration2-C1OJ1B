@@ -2,12 +2,12 @@
 using System.Collections.ObjectModel;
 using System.Windows;
 
-namespace Laboration_2.Vy.EventDeltagareWindow
+namespace Laboration_2.View.Windows.EventInfoWindow
 {
     /// <summary>
     /// Interaction logic for DeltagareWindow.xaml
     /// </summary>
-    public partial class DeltagareWindow : Window
+    public partial class EventInfoWindow : Window
     {
         private Aktivitet aktivitet;
         private ObservableCollection<Medlem> members = new ObservableCollection<Medlem>();
@@ -19,7 +19,7 @@ namespace Laboration_2.Vy.EventDeltagareWindow
         }
 
 
-        public DeltagareWindow(Window parentWindow, Aktivitet aktivitet)
+        public EventInfoWindow(Window parentWindow, Aktivitet aktivitet)
         {
             Owner = parentWindow;
             this.aktivitet = aktivitet;

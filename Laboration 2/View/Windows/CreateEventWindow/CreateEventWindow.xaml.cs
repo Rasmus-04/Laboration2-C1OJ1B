@@ -3,14 +3,14 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Xml.Linq;
 
-namespace Laboration_2.Vy.AddEventWindow
+namespace Laboration_2.View.Windows.CreateEventWindow
 {
     /// <summary>
-    /// Interaction logic for AddEvent.xaml
+    /// Interaction logic for CreateEventWindow.xaml
     /// </summary>
-    public partial class AddEvent : Window
+    public partial class CreateEventWindow : Window
     {
-        public AddEvent(Window parentWindow, ObservableCollection<Spel> allaSpel)
+        public CreateEventWindow(Window parentWindow, ObservableCollection<Spel> allaSpel)
         {
             Owner = parentWindow;
             InitializeComponent();

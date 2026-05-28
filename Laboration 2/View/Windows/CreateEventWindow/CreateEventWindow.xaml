@@ -1,9 +1,9 @@
-﻿<Window x:Class="Laboration_2.Vy.AddEventWindow.AddEvent"
+﻿<Window x:Class="Laboration_2.View.Windows.CreateEventWindow.CreateEventWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Laboration_2.Vy.AddEventWindow"
+        xmlns:local="clr-namespace:Laboration_2.View.Windows.CreateEventWindow"
         mc:Ignorable="d" WindowStyle="None" WindowStartupLocation="CenterOwner"
         Title="AddEvent" Height="250" Width="220">
     <Grid>
