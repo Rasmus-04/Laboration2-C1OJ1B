@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Laboration_2"
         xmlns:MenuBar="clr-namespace:Laboration_2.View.UserControls.MenuBar"
-        xmlns:MemberList="clr-namespace:Laboration_2.View.UserControls.MembersListView"
-        xmlns:AllaSpelVy="clr-namespace:Laboration_2.Vy.SpelVy"
+        xmlns:MemberList="clr-namespace:Laboration_2.View.UserControls.MemberListView"
+        xmlns:AllaSpelVy="clr-namespace:Laboration_2.View.UserControls.GameListView"
         xmlns:AktivitetVy="clr-namespace:Laboration_2.Vy.EventVy"
         
         mc:Ignorable="d"
@@ -27,8 +27,8 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <MemberList:MembersListView Grid.Column="0" Margin="5"/>
-            <AllaSpelVy:SpelVy Grid.Column="1" Margin="5"/>
+            <MemberList:MemberListView Grid.Column="0" Margin="5"/>
+            <AllaSpelVy:GameListView Grid.Column="1" Margin="5"/>
             <AktivitetVy:EventVy Grid.Column="2" Margin="5"/>
         </Grid>
         
