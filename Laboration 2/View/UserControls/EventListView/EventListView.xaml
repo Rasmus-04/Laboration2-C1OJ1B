@@ -14,10 +14,10 @@
         <ListView ItemsSource="{Binding AllaAktiviteter}" Name="lvAktiviteter" SelectionMode="Single" SelectedItem="{Binding SelectedEventItem}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Namn" DisplayMemberBinding="{Binding Namn}" Width="75"/>
-                    <GridViewColumn Header="Datum" DisplayMemberBinding="{Binding Datum}" Width="75"/>
-                    <GridViewColumn Header="Spel" DisplayMemberBinding="{Binding Spel}" Width="75" />
-                    <GridViewColumn Header="Antal Deltagare" DisplayMemberBinding="{Binding AntalDeltagare}" Width="90" />
+                    <GridViewColumn Header="Namn" DisplayMemberBinding="{Binding Name}" Width="75"/>
+                    <GridViewColumn Header="Datum" DisplayMemberBinding="{Binding EventDate}" Width="75"/>
+                    <GridViewColumn Header="Spel" DisplayMemberBinding="{Binding EventGame}" Width="75" />
+                    <GridViewColumn Header="Antal Deltagare" DisplayMemberBinding="{Binding CurrentParticipants}" Width="90" />
 
                 </GridView>
             </ListView.View>

@@ -10,14 +10,14 @@ namespace Laboration_2.View.Windows.CreateEventWindow
     /// </summary>
     public partial class CreateEventWindow : Window
     {
-        public CreateEventWindow(Window parentWindow, ObservableCollection<Spel> allaSpel)
+        public CreateEventWindow(Window parentWindow, ObservableCollection<Game> allaSpel)
         {
             Owner = parentWindow;
             InitializeComponent();
             cbSpel.ItemsSource = allaSpel;
         }
 
-        public Aktivitet CreatedEvent { get; private set; }
+        public Event CreatedEvent { get; private set; }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
@@ -29,7 +29,7 @@ namespace Laboration_2.View.Windows.CreateEventWindow
             string? titel = txtTitel.Text;
             int maxDeltagare;
             DateTime? datum = datePicker.SelectedDate;
-            Spel? spel = (Spel)cbSpel.SelectedItem;
+            Game? spel = (Game)cbSpel.SelectedItem;
 
             if (string.IsNullOrEmpty(titel))
                 MessageBox.Show("Namn måste vara ifyllt.", "Felaktig information", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -41,7 +41,7 @@ namespace Laboration_2.View.Windows.CreateEventWindow
                 MessageBox.Show("Alla fält måste vara ifyllda", "Felaktig information", MessageBoxButton.OK, MessageBoxImage.Information);
             else
             {
-                CreatedEvent = new Aktivitet(titel, datum.Value, spel, maxDeltagare);
+                CreatedEvent = new Event(titel, datum.Value, spel, maxDeltagare);
                 DialogResult = true;
                 Close();
             }

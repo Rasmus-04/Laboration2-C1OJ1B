@@ -18,9 +18,9 @@ namespace Laboration_2.ViewModel
             this.parentWindow = parentWindow;
         }
 
-        private ObservableCollection<Medlem> members = new ObservableCollection<Medlem>();
-        private ObservableCollection<Spel> allaSpel = new ObservableCollection<Spel>();
-        private ObservableCollection<Aktivitet> allaAktiviteter = new ObservableCollection<Aktivitet>();
+        private ObservableCollection<Member> members = new ObservableCollection<Member>();
+        private ObservableCollection<Game> allaSpel = new ObservableCollection<Game>();
+        private ObservableCollection<Event> allaAktiviteter = new ObservableCollection<Event>();
 
         public RelayCommand btnCreateMember => new RelayCommand(execute => CreateMember());
         public RelayCommand btnCreateGame => new RelayCommand(execute => CreateGame());
@@ -32,8 +32,8 @@ namespace Laboration_2.ViewModel
         public RelayCommand btnEventInfo => new RelayCommand(execute => ShowEventInfo());
         public RelayCommand btnAddMemberToEvent => new RelayCommand(execute => AddMemberToEvent());
 
-        private Medlem selectedMemberItem;
-        public Medlem SelectedMemberItem
+        private Member selectedMemberItem;
+        public Member SelectedMemberItem
         {
             get { return selectedMemberItem; }
             set
@@ -41,8 +41,8 @@ namespace Laboration_2.ViewModel
                 selectedMemberItem = value;
             }
         }
-        private Spel selectedGameItem;
-        public Spel SelectedGameItem
+        private Game selectedGameItem;
+        public Game SelectedGameItem
         {
             get { return selectedGameItem; }
             set
@@ -50,8 +50,8 @@ namespace Laboration_2.ViewModel
                 selectedGameItem = value;
             }
         }
-        private Aktivitet selectedEventItem;
-        public Aktivitet SelectedEventItem
+        private Event selectedEventItem;
+        public Event SelectedEventItem
         {
             get { return selectedEventItem; }
             set
@@ -60,19 +60,19 @@ namespace Laboration_2.ViewModel
             }
         }
 
-        public ObservableCollection<Medlem> Members
+        public ObservableCollection<Member> Members
         {
             get { return members; }
             set { members = value; }
         }
 
-        public ObservableCollection<Spel> AllaSpel
+        public ObservableCollection<Game> AllaSpel
         {
             get { return allaSpel; }
             set { allaSpel = value; }
         }
 
-        public ObservableCollection<Aktivitet> AllaAktiviteter
+        public ObservableCollection<Event> AllaAktiviteter
         {
             get { return allaAktiviteter; }
             set { allaAktiviteter = value; }

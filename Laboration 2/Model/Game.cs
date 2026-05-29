@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Laboration_2.Model
 {
-    public class Spel
+    public class Game
     {
         public int Id { get; }
 
@@ -14,7 +14,7 @@ namespace Laboration_2.Model
 
         public int MaxPlayers { get; set; }
 
-        public Spel(
+        public Game(
             string titel,
             int maxPlayers,
             int minPlayers,
@@ -36,7 +36,7 @@ namespace Laboration_2.Model
         }
 
         // LINQ - Gruppering
-        public static List<IGrouping<int, Spel>> GroupGamesByMaxPlayers(List<Spel> games)
+        public static List<IGrouping<int, Game>> GroupGamesByMaxPlayers(List<Game> games)
         {
             return games.GroupBy(g => g.MaxPlayers).ToList();
         }
