@@ -11,7 +11,7 @@
             <RowDefinition/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <ListView ItemsSource="{Binding Members}" Name="lvMembers" SelectionMode="Single">
+        <ListView ItemsSource="{Binding Members}" Name="lvMembers" SelectionMode="Single" SelectedItem="{Binding SelectedMemberItem}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="Auto"/>
@@ -22,7 +22,7 @@
         </ListView>
 
         <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5">
-            <Button Content="Ta bort medlem" Name="btnRemoveMember" Click="btnRemoveMember_Click"/>
+            <Button Content="Ta bort medlem" Name="btnRemoveMember" Command="{Binding btnRemoveMember}"/>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -11,7 +11,7 @@
             <RowDefinition/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <ListView ItemsSource="{Binding AllaAktiviteter}" Name="lvAktiviteter" SelectionMode="Single">
+        <ListView ItemsSource="{Binding AllaAktiviteter}" Name="lvAktiviteter" SelectionMode="Single" SelectedItem="{Binding SelectedEventItem}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Namn" DisplayMemberBinding="{Binding Namn}" Width="75"/>
@@ -25,9 +25,9 @@
 
 
         <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5">
-            <Button Content="Ta bort Aktivitet" Name="btnRemoveActivity" Click="btnRemoveActivity_Click"/>
-            <Button Content="Visa Deltagare" Name="btnVisaDeltagare" Click="btnVisaDeltagare_Click" Margin="10,0,0,0"/>
-            <Button Content="Lägg Till Deltagare" Name="btnAddMember" Click="btnAddMember_Click"  Margin="10,0,0,0"/>
+            <Button Content="Ta bort Aktivitet" Name="btnRemoveActivity" Command="{Binding btnRemoveEvent}"/>
+            <Button Content="Visa Deltagare" Name="btnVisaDeltagare" Margin="10,0,0,0" Command="{Binding btnEventInfo}"/>
+            <Button Content="Lägg Till Deltagare" Name="btnAddMember" Margin="10,0,0,0" Command="{Binding btnAddMemberToEvent}"/>
         </StackPanel>
     </Grid>
 </UserControl>

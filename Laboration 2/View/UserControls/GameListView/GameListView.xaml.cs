@@ -26,7 +26,6 @@ namespace Laboration_2.View.UserControls.GameListView
             Loaded += SpelVy_Loaded;
         }
 
-
         private void SpelVy_Loaded(object sender, RoutedEventArgs e)
         {
             // ItemsSource may not be set yet when Loaded fires. Use lvSpel.Items as a fallback
@@ -38,19 +37,6 @@ namespace Laboration_2.View.UserControls.GameListView
                 return;
 
             view.SortDescriptions.Add(new SortDescription("MaxPlayers", ListSortDirection.Ascending));
-        }
-
-        private void btnRemoveGame_Click(object sender, RoutedEventArgs e)
-        {/*
-            MainWindow mainWindow = (MainWindow)Window.GetWindow(this);
-
-            if (lvSpel.SelectedItem == null)
-                return;
-            MessageBoxResult result = MessageBox.Show("Är du säker att du vill ta bort denna medlem?", "Confirm Deletion", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            if (result == MessageBoxResult.Yes)
-            {
-                mainWindow.AllaSpel.Remove((Spel)lvSpel.SelectedItem);
-            }*/
         }
     }
 }

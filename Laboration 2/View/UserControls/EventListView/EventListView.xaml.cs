@@ -32,54 +32,5 @@ namespace Laboration_2.View.UserControls.EventListView
 
             view.SortDescriptions.Add(new SortDescription("Datum", ListSortDirection.Ascending));
         }
-
-        private void btnRemoveActivity_Click(object sender, RoutedEventArgs e)
-        {
-
-            /*
-            MainWindow mainWindow = (MainWindow)Window.GetWindow(this);
-
-            if (lvAktiviteter.SelectedItem == null)
-                return;
-            MessageBoxResult result = MessageBox.Show("Är du säker att du vill ta bort denna Aktivitet?", "Confirm Deletion", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            if (result == MessageBoxResult.Yes)
-            {
-                mainWindow.AllaAktiviteter.Remove((Aktivitet)lvAktiviteter.SelectedItem);
-            }*/
-        }
-
-        private void btnVisaDeltagare_Click(object sender, RoutedEventArgs e)
-        {
-            if (lvAktiviteter.SelectedItem == null)
-                return;
-
-            Window parentWindow = Window.GetWindow(this);
-
-            // För tillgång till listorna i MainWindow.xaml.cs
-            MainWindow mainWindow = (MainWindow)parentWindow;
-
-            EventInfoWindow deltagareWindow = new EventInfoWindow(parentWindow, (Aktivitet)lvAktiviteter.SelectedItem);
-            parentWindow.Opacity = .4;
-            deltagareWindow.ShowDialog();
-            parentWindow.Opacity = 1;
-        }
-
-        private void btnAddMember_Click(object sender, RoutedEventArgs e)
-        {
-            /*
-            if (lvAktiviteter.SelectedItem == null)
-                return;
-
-            Window parentWindow = Window.GetWindow(this);
-
-            // För tillgång till listorna i MainWindow.xaml.cs
-            MainWindow mainWindow = (MainWindow)parentWindow;
-
-            AddMemberToEventWindow deltagareWindow = new AddMemberToEventWindow(parentWindow, (Aktivitet)lvAktiviteter.SelectedItem, mainWindow.Members);
-
-            parentWindow.Opacity = .4;
-            deltagareWindow.ShowDialog();
-            parentWindow.Opacity = 1;*/
-        }
     }
 }

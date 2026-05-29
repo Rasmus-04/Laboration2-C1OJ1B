@@ -1,10 +1,12 @@
 ﻿using Laboration_2.Model;
 using Laboration_2.MVVM;
+using Laboration_2.View.Windows.CreateEventWindow;
+using Laboration_2.View.Windows.CreateGameWindow;
+using Laboration_2.View.Windows.EventInfoWindow;
+using Laboration_2.View.Windows.RegisterMemberWindow;
+using Laboration_2.View.Windows.AddMemberToEventWindow;
 using System.Collections.ObjectModel;
 using System.Windows;
-using Laboration_2.View.Windows.RegisterMemberWindow;
-using Laboration_2.View.Windows.CreateGameWindow;
-using Laboration_2.View.Windows.CreateEventWindow;
 
 namespace Laboration_2.ViewModel
 {
@@ -24,7 +26,39 @@ namespace Laboration_2.ViewModel
         public RelayCommand btnCreateGame => new RelayCommand(execute => CreateGame());
         public RelayCommand btnCreateEvent => new RelayCommand(execute => CreateEvent());
         public RelayCommand btnGenerateTestData => new RelayCommand(execute => GenerateTestData());
+        public RelayCommand btnRemoveMember => new RelayCommand(execute => RemoveMember());
+        public RelayCommand btnRemoveGame => new RelayCommand(execute => RemoveGame());
+        public RelayCommand btnRemoveEvent => new RelayCommand(execute => RemoveEvent());
+        public RelayCommand btnEventInfo => new RelayCommand(execute => ShowEventInfo());
+        public RelayCommand btnAddMemberToEvent => new RelayCommand(execute => AddMemberToEvent());
 
+        private Medlem selectedMemberItem;
+        public Medlem SelectedMemberItem
+        {
+            get { return selectedMemberItem; }
+            set
+            {
+                selectedMemberItem = value;
+            }
+        }
+        private Spel selectedGameItem;
+        public Spel SelectedGameItem
+        {
+            get { return selectedGameItem; }
+            set
+            {
+                selectedGameItem = value;
+            }
+        }
+        private Aktivitet selectedEventItem;
+        public Aktivitet SelectedEventItem
+        {
+            get { return selectedEventItem; }
+            set
+            {
+                selectedEventItem = value;
+            }
+        }
 
         public ObservableCollection<Medlem> Members
         {
@@ -86,6 +120,63 @@ namespace Laboration_2.ViewModel
         private void GenerateTestData()
         {
             TestData.GenerateAllData(Members, AllaSpel, AllaAktiviteter);
+        }
+
+
+        private void RemoveMember()
+        {
+            if (SelectedMemberItem == null)
+                return;
+            MessageBoxResult result = MessageBox.Show("Är du säker att du vill ta bort denna medlem?", "Confirm Deletion", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                Members.Remove(SelectedMemberItem);
+            }
+        }
+
+        private void RemoveGame()
+        {
+            if (SelectedGameItem == null)
+                return;
+            MessageBoxResult result = MessageBox.Show("Är du säker att du vill ta bort detta spel?", "Confirm Deletion", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                AllaSpel.Remove(SelectedGameItem);
+            }
+        }
+
+        private void RemoveEvent()
+        {
+            if (SelectedEventItem == null)
+                return;
+            MessageBoxResult result = MessageBox.Show("Är du säker att du vill ta bort denna Aktivitet?", "Confirm Deletion", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                AllaAktiviteter.Remove(SelectedEventItem);
+            }
+        }
+
+        private void ShowEventInfo()
+        {
+            if (SelectedEventItem == null)
+                return;
+
+            EventInfoWindow deltagareWindow = new EventInfoWindow(parentWindow, SelectedEventItem);
+            parentWindow.Opacity = .4;
+            deltagareWindow.ShowDialog();
+            parentWindow.Opacity = 1;
+        }
+
+        private void AddMemberToEvent()
+        {
+            if (SelectedEventItem == null)
+                return;
+
+            AddMemberToEventWindow deltagareWindow = new AddMemberToEventWindow(parentWindow, SelectedEventItem, Members);
+
+            parentWindow.Opacity = .4;
+            deltagareWindow.ShowDialog();
+            parentWindow.Opacity = 1;
         }
     }
 }
