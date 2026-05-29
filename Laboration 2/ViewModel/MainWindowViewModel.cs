@@ -122,7 +122,6 @@ namespace Laboration_2.ViewModel
             TestData.GenerateAllData(Members, AllaSpel, AllaAktiviteter);
         }
 
-
         private void RemoveMember()
         {
             if (SelectedMemberItem == null)

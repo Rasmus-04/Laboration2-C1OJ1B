@@ -20,16 +20,16 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Vertical" Grid.Column="0">
-                <TextBlock Text="Titel: chess tunering" Name="tbTitel"/>
-                <TextBlock Text="Spel: Chess" Name="tbSpel"/>
+                <TextBlock Text="{Binding Titel}" Name="tbTitel"/>
+                <TextBlock Text="{Binding Spel}" Name="tbSpel"/>
             </StackPanel>
             <StackPanel Orientation="Vertical" Grid.Column="1" Margin="10,0,0,0">
-                <TextBlock Text="Datum: 02/06/2026" Name="tbDatum"/>
-                <TextBlock Text="Deltagare 10/30" Name="tbDeltagare"/>
+                <TextBlock Text="{Binding Datum}" Name="tbDatum"/>
+                <TextBlock Text="{Binding Deltagare}" Name="tbDeltagare"/>
             </StackPanel>
         </Grid>
-        
-        <ListView ItemsSource="{Binding Members}" Name="lvMembers" SelectionMode="Single" Grid.Row="1">
+
+        <ListView ItemsSource="{Binding Members}" Name="lvMembers" SelectionMode="Single" Grid.Row="1" SelectedItem="{Binding SelectedMember}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="Auto"/>
@@ -41,7 +41,7 @@
 
         <StackPanel Orientation="Horizontal" Grid.Row="2">
             <Button Content="Stäng" Margin="5" Width="50" Height="20" Click="btnClose_Click"/>
-            <Button Content="Ta bort medlem" Margin="5" Width="100" Height="20" Name="btnRemoveMember" Click="btnRemoveMember_Click"/>
+            <Button Content="Ta bort medlem" Margin="5" Width="100" Height="20" Name="btnRemoveMember" Command="{Binding btnRemoveMemberFromEvent}"/>
         </StackPanel>
     </Grid>
 </Window>
