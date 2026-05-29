@@ -9,15 +9,15 @@
     <Grid>
         <StackPanel>
             <Label Content="Namn"/>
-            <TextBox Name="txtName" Width="200" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+            <TextBox Name="txtName" Width="200" HorizontalAlignment="Left" Margin="5,0,0,0" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
             <Label Content="Ålder"/>
-            <TextBox Name="txtAge" Width="200" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+            <TextBox Name="txtAge" Width="200" HorizontalAlignment="Left" Margin="5,0,0,0" Text="{Binding Age, UpdateSourceTrigger=PropertyChanged}"/>
             <Label Content="Epost"/>
-            <TextBox Name="txtEmail" Width="200" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+            <TextBox Name="txtEmail" Width="200" HorizontalAlignment="Left" Margin="5,0,0,0" Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"/>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                <Button Content="Lägg Till" Margin="5,10,0,0" Width="60" HorizontalAlignment="Left" Name="AddUserBtn" Click="AddUserBtn_Click"/>
-                <Button Content="Avbryt" Margin="5,10,0,0" Width="60" HorizontalAlignment="Left" Name="CancelBtn" Click="CancelBtn_Click"/>
+                <Button Content="Lägg Till" Margin="5,10,0,0" Width="60" HorizontalAlignment="Left" Name="AddUserBtn" Command="{Binding btnAddUserCommand}"/>
+                <Button Content="Avbryt" Margin="5,10,0,0" Width="60" HorizontalAlignment="Left" Name="CancelBtn" Command="{Binding btnCloseWindow}"/>
             </StackPanel>
         </StackPanel>
     </Grid>

@@ -1,4 +1,6 @@
 ﻿using Laboration_2.Model;
+using Laboration_2.ViewModel;
+using System.Collections.ObjectModel;
 using System.Windows;
 
 namespace Laboration_2.View.Windows.RegisterMemberWindow
@@ -11,35 +13,26 @@ namespace Laboration_2.View.Windows.RegisterMemberWindow
 
         public Member CreatedMember { get; private set; }
 
-        public RegisterMemberWindow(Window parentWindow)
+        public RegisterMemberWindow(Window parentWindow, ObservableCollection<Member> members)
         {
             InitializeComponent();
             Owner = parentWindow;
-        }
 
-        private void CancelBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
+            RegisterMemberWindowViewModel viewModel = new RegisterMemberWindowViewModel(members);
 
-        private void AddUserBtn_Click(object sender, RoutedEventArgs e)
-        {
-            int age;
-            string name = txtName.Text;
-            string email = txtEmail.Text;
-            if (string.IsNullOrEmpty(name))
-                MessageBox.Show("Namn måste vara ifyllt.", "Felaktigt namn", MessageBoxButton.OK, MessageBoxImage.Information);
-            else if (!int.TryParse(txtAge.Text, out age))
-                MessageBox.Show("Ålder måste vara ifylld.", "Felaktig ålder", MessageBoxButton.OK, MessageBoxImage.Information);
-            else if (string.IsNullOrEmpty(email))
-                MessageBox.Show("Epost måste vara ifylld.", "Felaktigt Epost", MessageBoxButton.OK, MessageBoxImage.Information);
-            else
+            viewModel.RequestSaveAndClose += () =>
             {
-                Member newMember = new Member(age, txtName.Text, txtEmail.Text);
-                CreatedMember = new Member(age, name, email);
+                CreatedMember = viewModel.CreatedMember;
                 DialogResult = true;
                 Close();
-            }
+            };
+
+            viewModel.RequestClose += () =>
+            {
+                DialogResult = false;
+                Close();
+            };
+            DataContext = viewModel;
         }
     }
 }

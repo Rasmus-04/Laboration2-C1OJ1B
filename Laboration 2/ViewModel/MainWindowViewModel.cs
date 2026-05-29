@@ -80,7 +80,7 @@ namespace Laboration_2.ViewModel
 
         private void CreateMember()
         {
-            RegisterMemberWindow addMemberWindow = new RegisterMemberWindow(parentWindow);
+            RegisterMemberWindow addMemberWindow = new RegisterMemberWindow(parentWindow, members);
             parentWindow.Opacity = .4;
             bool? result = addMemberWindow.ShowDialog();
 
