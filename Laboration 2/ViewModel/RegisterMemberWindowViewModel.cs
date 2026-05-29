@@ -59,17 +59,22 @@ namespace Laboration_2.ViewModel
 
         private void AddUserBtn_Click()
         {
-            int validAge;
-            if (string.IsNullOrEmpty(Name))
-                MessageBox.Show("Namn måste vara ifyllt.", "Felaktigt namn", MessageBoxButton.OK, MessageBoxImage.Information);
-            else if (!int.TryParse(Age, out validAge))
-                MessageBox.Show("Ålder måste vara ifylld.", "Felaktig ålder", MessageBoxButton.OK, MessageBoxImage.Information);
-            else if (string.IsNullOrEmpty(Email))
-                MessageBox.Show("Epost måste vara ifylld.", "Felaktigt Epost", MessageBoxButton.OK, MessageBoxImage.Information);
-            else
+            try
             {
-                CreatedMember = new Member(validAge, Name, Email);
+                CreatedMember = new Member(int.Parse(Age), Name, Email);
                 RequestSaveAndClose?.Invoke();
+            }
+            catch(Exception ex) when(
+                ex is FormatException ||
+                ex is ArgumentException)
+            {
+                MessageBox.Show("Ålder måste vara ett giltigt heltal.", "Felaktig ålder", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{ex.Message}", "Fel", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
         }
 
