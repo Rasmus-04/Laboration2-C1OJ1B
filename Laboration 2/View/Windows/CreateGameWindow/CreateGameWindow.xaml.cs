@@ -9,7 +9,7 @@ namespace Laboration_2.View.Windows.CreateGameWindow
     public partial class CreateGameWindow : Window
     {
 
-        public Spel CreatedSpel { get; private set; }
+        public Game CreatedSpel { get; private set; }
 
         public CreateGameWindow(Window parentWindow)
         {
@@ -36,7 +36,7 @@ namespace Laboration_2.View.Windows.CreateGameWindow
                 MessageBox.Show("Alla fält måste vara ifyllda!", "Felaktig inmatning", MessageBoxButton.OK, MessageBoxImage.Information);
             else
             {
-                Spel newSpel = new Spel(titel, max, min);
+                Game newSpel = new Game(titel, max, min);
                 CreatedSpel = newSpel;
                 DialogResult = true;
                 Close();

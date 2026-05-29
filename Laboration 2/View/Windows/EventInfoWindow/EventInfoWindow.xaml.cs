@@ -9,28 +9,28 @@ namespace Laboration_2.View.Windows.EventInfoWindow
     /// </summary>
     public partial class EventInfoWindow : Window
     {
-        private Aktivitet aktivitet;
-        private ObservableCollection<Medlem> members = new ObservableCollection<Medlem>();
+        private Event aktivitet;
+        private ObservableCollection<Member> members = new ObservableCollection<Member>();
 
-        public ObservableCollection<Medlem> Members
+        public ObservableCollection<Member> Members
         {
             get { return members; }
             set { members = value; }
         }
 
 
-        public EventInfoWindow(Window parentWindow, Aktivitet aktivitet)
+        public EventInfoWindow(Window parentWindow, Event aktivitet)
         {
             Owner = parentWindow;
             this.aktivitet = aktivitet;
-            Members = aktivitet.Deltagare;
+            Members = aktivitet.Participants;
             InitializeComponent();
             DataContext = this;
 
-            tbTitel.Text = $"Namn: {aktivitet.Namn}";
-            tbDatum.Text = $"Datum: {aktivitet.Datum}";
-            tbSpel.Text = $"Spel: {aktivitet.Spel.Titel}";
-            tbDeltagare.Text = $"Deltagare: {aktivitet.AntalDeltagare}/{aktivitet.MaxDeltagare}";
+            tbTitel.Text = $"Namn: {aktivitet.Name}";
+            tbDatum.Text = $"Datum: {aktivitet.EventDate}";
+            tbSpel.Text = $"Spel: {aktivitet.EventGame.Titel}";
+            tbDeltagare.Text = $"Deltagare: {aktivitet.CurrentParticipants}/{aktivitet.MaxParticipants}";
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -44,7 +44,7 @@ namespace Laboration_2.View.Windows.EventInfoWindow
             if (lvMembers.SelectedItem == null)
                 return;
 
-            Medlem selectedMember = (Medlem)lvMembers.SelectedItem;
+            Member selectedMember = (Member)lvMembers.SelectedItem;
 
             MessageBoxResult result = MessageBox.Show(
                 "Är du säker att du vill ta bort deltagaren?",
@@ -54,7 +54,7 @@ namespace Laboration_2.View.Windows.EventInfoWindow
 
             if (result == MessageBoxResult.Yes)
             {
-                aktivitet.RemoveDeltagare(selectedMember);
+                aktivitet.RemoveParticipant(selectedMember);
             }
         }
     }

@@ -9,7 +9,7 @@ namespace Laboration_2.View.Windows.RegisterMemberWindow
     public partial class RegisterMemberWindow : Window
     {
 
-        public Medlem CreatedMember { get; private set; }
+        public Member CreatedMember { get; private set; }
 
         public RegisterMemberWindow(Window parentWindow)
         {
@@ -35,8 +35,8 @@ namespace Laboration_2.View.Windows.RegisterMemberWindow
                 MessageBox.Show("Epost måste vara ifylld.", "Felaktigt Epost", MessageBoxButton.OK, MessageBoxImage.Information);
             else
             {
-                Medlem newMember = new Medlem(age, txtName.Text, txtEmail.Text);
-                CreatedMember = new Medlem(age, name, email);
+                Member newMember = new Member(age, txtName.Text, txtEmail.Text);
+                CreatedMember = new Member(age, name, email);
                 DialogResult = true;
                 Close();
             }

@@ -11,26 +11,26 @@ namespace Laboration_2.View.Windows.AddMemberToEventWindow
     public partial class AddMemberToEventWindow : Window
     {
 
-        List<Medlem> GiltligaMedlemmar = new List<Medlem>();
+        List<Member> GiltligaMedlemmar = new List<Member>();
 
-        Aktivitet aktivitet { get; set; }
-        public AddMemberToEventWindow(Window parentWindow, Aktivitet aktivitet, ObservableCollection<Medlem> medlemar)
+        Event aktivitet { get; set; }
+        public AddMemberToEventWindow(Window parentWindow, Event aktivitet, ObservableCollection<Member> medlemar)
         {
             Owner = parentWindow;
             InitializeComponent();
 
             this.aktivitet = aktivitet;
             // Filtrera ut medlemmar som inte redan är deltagare i aktiviteten
-            GiltligaMedlemmar = medlemar.Where(m => !aktivitet.Deltagare.Contains(m)).ToList();
+            GiltligaMedlemmar = medlemar.Where(m => !aktivitet.Participants.Contains(m)).ToList();
             GiltligaMedlemmar = GiltligaMedlemmar.OrderBy(m => m.Name).ToList();
 
             cbMedlem.ItemsSource = GiltligaMedlemmar;
 
             cbMedlem.ItemsSource = GiltligaMedlemmar;
-            tbTitel.Text = $"Namn: {aktivitet.Namn}";
-            tbDatum.Text = $"Datum: {aktivitet.Datum}";
-            tbSpel.Text = $"Spel: {aktivitet.Spel.Titel}";
-            tbDeltagare.Text = $"Deltagare: {aktivitet.AntalDeltagare}/{aktivitet.MaxDeltagare}";
+            tbTitel.Text = $"Namn: {aktivitet.Name}";
+            tbDatum.Text = $"Datum: {aktivitet.EventDate}";
+            tbSpel.Text = $"Spel: {aktivitet.EventGame.Titel}";
+            tbDeltagare.Text = $"Deltagare: {aktivitet.CurrentParticipants}/{aktivitet.MaxParticipants}";
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -42,7 +42,7 @@ namespace Laboration_2.View.Windows.AddMemberToEventWindow
         {
             if(!(cbMedlem.SelectedItem == null))
             {
-                aktivitet.AddDeltagare((Medlem)cbMedlem.SelectedItem);
+                aktivitet.AddParticipant((Member)cbMedlem.SelectedItem);
                 Close();
             }
         }

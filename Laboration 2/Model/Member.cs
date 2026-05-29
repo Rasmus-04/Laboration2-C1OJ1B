@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Laboration_2.Model
 {
-    public class Medlem
+    public class Member
     {
         public int Age { get; set; }
 
@@ -16,7 +16,7 @@ namespace Laboration_2.Model
 
         public DateTime CreatedDate { get; }
 
-        public Medlem(int age, string name, string email)
+        public Member(int age, string name, string email)
         {
             if (string.IsNullOrWhiteSpace(name))
                 throw new Exception("Namn får inte vara tomt");
@@ -46,7 +46,7 @@ namespace Laboration_2.Model
         }
 
         // LINQ - Filtrering
-        public static List<Medlem> GetActiveMembers(List<Medlem> members)
+        public static List<Member> GetActiveMembers(List<Member> members)
         {
             return members.Where(m => m.IsActive).ToList();
         }
