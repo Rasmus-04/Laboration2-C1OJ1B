@@ -35,6 +35,8 @@ namespace Laboration_2.View.UserControls.EventListView
 
         private void btnRemoveActivity_Click(object sender, RoutedEventArgs e)
         {
+
+            /*
             MainWindow mainWindow = (MainWindow)Window.GetWindow(this);
 
             if (lvAktiviteter.SelectedItem == null)
@@ -43,7 +45,7 @@ namespace Laboration_2.View.UserControls.EventListView
             if (result == MessageBoxResult.Yes)
             {
                 mainWindow.AllaAktiviteter.Remove((Aktivitet)lvAktiviteter.SelectedItem);
-            }
+            }*/
         }
 
         private void btnVisaDeltagare_Click(object sender, RoutedEventArgs e)
@@ -64,6 +66,7 @@ namespace Laboration_2.View.UserControls.EventListView
 
         private void btnAddMember_Click(object sender, RoutedEventArgs e)
         {
+            /*
             if (lvAktiviteter.SelectedItem == null)
                 return;
 
@@ -76,7 +79,7 @@ namespace Laboration_2.View.UserControls.EventListView
 
             parentWindow.Opacity = .4;
             deltagareWindow.ShowDialog();
-            parentWindow.Opacity = 1;
+            parentWindow.Opacity = 1;*/
         }
     }
 }

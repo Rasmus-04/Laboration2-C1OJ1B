@@ -9,14 +9,14 @@
     <Grid>
         <Grid>
             <StackPanel Orientation="Horizontal">
-                <Button Name="AddUser" Content="Ny Medlem" Margin="5" 
-                Height="30" Click="AddUser_Click"/>
-                <Button Name="NewSpel" Content="Nytt Spel" Margin="5" 
-                Height="30" Click="NewSpel_Click"/>
-                <Button Name="NewEvent" Content="Ny Aktivitet" Margin="5" 
-                Height="30" Click="NewEvent_Click"/>
+                <Button Name="btnAddUser" Content="Ny Medlem" Margin="5" 
+                Height="30" Command="{Binding btnCreateMember}"/>
+                <Button Name="btnNewGame" Content="Nytt Spel" Margin="5" 
+                Height="30" Command="{Binding btnCreateGame}"/>
+                <Button Name="btnCreateEvent" Content="Ny Aktivitet" Margin="5" 
+                Height="30" Command="{Binding btnCreateEvent}"/>
                 <Button Name="btnTestData" Content="Test Data" Margin="5" 
-                Height="30" Click="btnTestData_Click"/>
+                Height="30" Command="{Binding btnGenerateTestData}"/>
             </StackPanel>
         </Grid>
     </Grid>

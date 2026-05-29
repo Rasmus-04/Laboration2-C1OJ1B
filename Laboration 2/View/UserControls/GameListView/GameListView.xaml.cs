@@ -41,7 +41,7 @@ namespace Laboration_2.View.UserControls.GameListView
         }
 
         private void btnRemoveGame_Click(object sender, RoutedEventArgs e)
-        {
+        {/*
             MainWindow mainWindow = (MainWindow)Window.GetWindow(this);
 
             if (lvSpel.SelectedItem == null)
@@ -50,7 +50,7 @@ namespace Laboration_2.View.UserControls.GameListView
             if (result == MessageBoxResult.Yes)
             {
                 mainWindow.AllaSpel.Remove((Spel)lvSpel.SelectedItem);
-            }
+            }*/
         }
     }
 }

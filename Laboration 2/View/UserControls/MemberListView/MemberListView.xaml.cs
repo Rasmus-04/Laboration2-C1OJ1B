@@ -25,7 +25,7 @@ namespace Laboration_2.View.UserControls.MemberListView
         }
 
         private void btnRemoveMember_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
+        {/*
             MainWindow mainWindow = (MainWindow)Window.GetWindow(this);
 
             if (lvMembers.SelectedItem == null)
@@ -34,7 +34,7 @@ namespace Laboration_2.View.UserControls.MemberListView
             if (result == MessageBoxResult.Yes)
             {
                 mainWindow.Members.Remove((Medlem)lvMembers.SelectedItem);
-            }
+            }*/
         }
     }
 }
