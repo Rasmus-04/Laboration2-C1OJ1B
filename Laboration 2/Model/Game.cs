@@ -2,19 +2,20 @@
 {
     public class Game
     {
-        public int Id { get; }
+        public int Id { get; set; }
 
         public string Titel { get; set; }
 
         public int MinPlayers { get; set; }
 
         public int MaxPlayers { get; set; }
-
+        public Game()
+        {
+        }
         public Game(
             string titel,
             int maxPlayers,
-            int minPlayers,
-            int id = 0)
+            int minPlayers)
         {
             if (string.IsNullOrWhiteSpace(titel))
                 throw new Exception("Spelet måste ha en titel");
@@ -25,7 +26,6 @@
             if (minPlayers > maxPlayers)
                 throw new Exception("MinPlayers kan inte vara större än MaxPlayers");
 
-            Id = id;
             Titel = titel;
             MinPlayers = minPlayers;
             MaxPlayers = maxPlayers;

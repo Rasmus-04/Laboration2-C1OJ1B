@@ -1,5 +1,6 @@
 ﻿using Laboration_2.Model;
 using Laboration_2.MVVM;
+using Laboration_2.Service;
 using Laboration_2.View.Windows.AddMemberToEventWindow;
 using Laboration_2.View.Windows.CreateEventWindow;
 using Laboration_2.View.Windows.CreateGameWindow;
@@ -16,7 +17,10 @@ namespace Laboration_2.ViewModel
         public MainWindowViewModel(Window parentWindow)
         {
             this.parentWindow = parentWindow;
+            _memberService = new MemberService();
+            _ = LoadMembersAsync();
         }
+        private readonly MemberService _memberService;
 
         private ObservableCollection<Member> members = new ObservableCollection<Member>();
         private ObservableCollection<Game> allGames = new ObservableCollection<Game>();
@@ -78,7 +82,7 @@ namespace Laboration_2.ViewModel
             set { allEvents = value; }
         }
 
-        private void CreateMember()
+        private async void CreateMember()
         {
             RegisterMemberWindow addMemberWindow = new RegisterMemberWindow(parentWindow);
             parentWindow.Opacity = .4;
@@ -86,7 +90,8 @@ namespace Laboration_2.ViewModel
 
             if (result == true)
             {
-                Members.Add(addMemberWindow.CreatedMember);
+                await _memberService.AddAsync(addMemberWindow.CreatedMember);
+                await LoadMembersAsync();
             }
             parentWindow.Opacity = 1;
         }
@@ -122,14 +127,15 @@ namespace Laboration_2.ViewModel
             TestData.GenerateAllData(Members, AllaSpel, AllaAktiviteter);
         }
 
-        private void RemoveMember()
+        private async void RemoveMember()
         {
             if (SelectedMemberItem == null)
                 return;
             MessageBoxResult result = MessageBox.Show("Är du säker att du vill ta bort denna medlem?", "Confirm Deletion", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
-                Members.Remove(SelectedMemberItem);
+                await _memberService.RemoveAsync(SelectedMemberItem);
+                await LoadMembersAsync();
             }
         }
 
@@ -176,6 +182,18 @@ namespace Laboration_2.ViewModel
             parentWindow.Opacity = .4;
             deltagareWindow.ShowDialog();
             parentWindow.Opacity = 1;
+        }
+
+        public async Task LoadMembersAsync()
+        {
+            Members.Clear();
+
+            var dbMembers = await _memberService.GetAllAsync();
+
+            foreach (var member in dbMembers)
+            {
+                Members.Add(member);
+            }
         }
     }
 }

@@ -2,6 +2,7 @@
 {
     public class Member
     {
+        public int Id { get; set; }
         public int Age { get; set; }
 
         public string Name { get; set; }
@@ -10,8 +11,11 @@
 
         public bool IsActive { get; private set; }
 
-        public DateTime CreatedDate { get; }
+        public DateTime CreatedDate { get; set; }
 
+        public Member()
+        {
+        }
         public Member(int age, string name, string email)
         {
             if (string.IsNullOrWhiteSpace(name))

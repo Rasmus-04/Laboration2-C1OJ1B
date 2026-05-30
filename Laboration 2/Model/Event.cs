@@ -6,7 +6,7 @@ namespace Laboration_2.Model
 {
     public class Event : INotifyPropertyChanged
     {
-        public int Id { get; }
+        public int Id { get; set; }
 
         public string Name { get; set; }
 
@@ -26,14 +26,16 @@ namespace Laboration_2.Model
         public ObservableCollection<Member> Participants
         {
             get { return participants; }
+            set { participants = value; }
         }
-
+        public Event()
+        {
+        }
         public Event(
             string name,
             DateTime eventDate,
             Game eventGame,
-            int maxParticipants,
-            int id = 0)
+            int maxParticipants)
         {
             if (string.IsNullOrWhiteSpace(name))
                 throw new Exception("Aktiviteten måste ha ett namn");
@@ -41,7 +43,6 @@ namespace Laboration_2.Model
             if (maxParticipants <= 0)
                 throw new Exception("Maxdeltagare måste vara större än 0");
 
-            Id = id;
             Name = name;
             EventDate = eventDate;
             EventGame = eventGame;
