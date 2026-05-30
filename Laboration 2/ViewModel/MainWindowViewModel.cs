@@ -19,8 +19,8 @@ namespace Laboration_2.ViewModel
         }
 
         private ObservableCollection<Member> members = new ObservableCollection<Member>();
-        private ObservableCollection<Game> allaSpel = new ObservableCollection<Game>();
-        private ObservableCollection<Event> allaAktiviteter = new ObservableCollection<Event>();
+        private ObservableCollection<Game> allGames = new ObservableCollection<Game>();
+        private ObservableCollection<Event> allEvents = new ObservableCollection<Event>();
 
         public RelayCommand btnCreateMember => new RelayCommand(execute => CreateMember());
         public RelayCommand btnCreateGame => new RelayCommand(execute => CreateGame());
@@ -68,14 +68,14 @@ namespace Laboration_2.ViewModel
 
         public ObservableCollection<Game> AllaSpel
         {
-            get { return allaSpel; }
-            set { allaSpel = value; }
+            get { return allGames; }
+            set { allGames = value; }
         }
 
         public ObservableCollection<Event> AllaAktiviteter
         {
-            get { return allaAktiviteter; }
-            set { allaAktiviteter = value; }
+            get { return allEvents; }
+            set { allEvents = value; }
         }
 
         private void CreateMember()

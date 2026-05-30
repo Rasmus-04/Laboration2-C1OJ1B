@@ -9,18 +9,18 @@
     <Grid>
         <StackPanel>
             <Label Content="Namn på aktivitet"/>
-            <TextBox Name="txtTitel" Width="200" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+            <TextBox Name="txtTitel" Width="200" HorizontalAlignment="Left" Margin="5,0,0,0" Text="{Binding TbEventTitel}"/>
             <Label Content="Datum"/>
-            <DatePicker Name="datePicker" Margin="0,0,0,0" Width="200"/>
+            <DatePicker Name="datePicker" Margin="0,0,0,0" Width="200" Text="{Binding DpDate, StringFormat='yyyy-MM-dd'}"/>
             <Label Content="Max Deltagare"/>
-            <TextBox Name="txtMaxDeltagare" Width="200" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+            <TextBox Name="txtMaxDeltagare" Width="200" HorizontalAlignment="Left" Margin="5,0,0,0" Text="{Binding TbMaxParticepents}"/>
             <Label Content="Spel"/>
-            <ComboBox Name="cbSpel" Width="200" HorizontalAlignment="Left" Margin="5,0,0,0" DisplayMemberPath="Titel"/>
+            <ComboBox Name="cbSpel" Width="200" HorizontalAlignment="Left" Margin="5,0,0,0" DisplayMemberPath="Titel" SelectedItem="{Binding CbGame}" ItemsSource="{Binding CbAllGames}"/>
             
             
             <StackPanel Orientation="Horizontal" Margin="0,10">
-                <Button Content="Lägg Till" Margin="5" Name="btnAddEvent" Click="btnAddEvent_Click"/>
-                <Button Content="Avbryt" Margin="5" Name="Cancel" Click="Cancel_Click"/>
+                <Button Content="Lägg Till" Margin="5" Name="btnAddEvent" Command="{Binding btnAddEvent}"/>
+                <Button Content="Avbryt" Margin="5" Name="Cancel" Command="{Binding btnCloseWindow}"/>
             </StackPanel>
         </StackPanel>
 
