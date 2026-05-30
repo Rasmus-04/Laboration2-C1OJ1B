@@ -13,21 +13,17 @@ namespace Laboration_2.Model
         public DateTime EventDate { get; set; }
 
         public Game EventGame { get; set; }
+        public int GameId { get; set; }
 
         public int MaxParticipants { get; set; }
+        public ObservableCollection<EventMember> EventMembers { get; set; }= new();
 
         public int CurrentParticipants
         {
-            get { return participants.Count; }
+            get { return Participants.Count(); }
         }
+        public IEnumerable<Member> Participants => EventMembers.Select(em => em.Member);
 
-        private ObservableCollection<Member> participants = new ObservableCollection<Member>();
-
-        public ObservableCollection<Member> Participants
-        {
-            get { return participants; }
-            set { participants = value; }
-        }
         public Event()
         {
         }
@@ -46,29 +42,31 @@ namespace Laboration_2.Model
             Name = name;
             EventDate = eventDate;
             EventGame = eventGame;
+            GameId = eventGame.Id;
             MaxParticipants = maxParticipants;
         }
 
         public void AddParticipant(Member memeber)
         {
-            if (participants.Contains(memeber))
+            if (Participants.Contains(memeber))
                 throw new Exception("Medlem redan tillagd");
 
-            if (participants.Count >= MaxParticipants)
+            if (Participants.Count() >= MaxParticipants)
                 return;
-
-            participants.Add(memeber);
 
             OnPropertyChanged(nameof(CurrentParticipants));
         }
 
         public void RemoveParticipant(Member member)
         {
-            if (participants.Contains(member))
+            EventMember? eventMember = EventMembers.FirstOrDefault(em => em.MemberId == member.Id);
+
+            if (eventMember != null)
             {
-                participants.Remove(member);
+                EventMembers.Remove(eventMember);
 
                 OnPropertyChanged(nameof(CurrentParticipants));
+                OnPropertyChanged(nameof(Participants));
             }
         }
 

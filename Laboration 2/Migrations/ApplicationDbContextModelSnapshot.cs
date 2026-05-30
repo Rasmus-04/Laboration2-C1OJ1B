@@ -33,7 +33,7 @@ namespace Laboration_2.Migrations
                     b.Property<DateTime>("EventDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("EventGameId")
+                    b.Property<int>("GameId")
                         .HasColumnType("int");
 
                     b.Property<int>("MaxParticipants")
@@ -45,9 +45,24 @@ namespace Laboration_2.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EventGameId");
+                    b.HasIndex("GameId");
 
                     b.ToTable("Events");
+                });
+
+            modelBuilder.Entity("Laboration_2.Model.EventMember", b =>
+                {
+                    b.Property<int>("EventId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MemberId")
+                        .HasColumnType("int");
+
+                    b.HasKey("EventId", "MemberId");
+
+                    b.HasIndex("MemberId");
+
+                    b.ToTable("EventMembers");
                 });
 
             modelBuilder.Entity("Laboration_2.Model.Game", b =>
@@ -91,9 +106,6 @@ namespace Laboration_2.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("EventId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -103,8 +115,6 @@ namespace Laboration_2.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EventId");
-
                     b.ToTable("Members");
                 });
 
@@ -112,23 +122,40 @@ namespace Laboration_2.Migrations
                 {
                     b.HasOne("Laboration_2.Model.Game", "EventGame")
                         .WithMany()
-                        .HasForeignKey("EventGameId")
+                        .HasForeignKey("GameId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("EventGame");
                 });
 
-            modelBuilder.Entity("Laboration_2.Model.Member", b =>
+            modelBuilder.Entity("Laboration_2.Model.EventMember", b =>
                 {
-                    b.HasOne("Laboration_2.Model.Event", null)
-                        .WithMany("Participants")
-                        .HasForeignKey("EventId");
+                    b.HasOne("Laboration_2.Model.Event", "Event")
+                        .WithMany("EventMembers")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Laboration_2.Model.Member", "Member")
+                        .WithMany("EventMembers")
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Event");
+
+                    b.Navigation("Member");
                 });
 
             modelBuilder.Entity("Laboration_2.Model.Event", b =>
                 {
-                    b.Navigation("Participants");
+                    b.Navigation("EventMembers");
+                });
+
+            modelBuilder.Entity("Laboration_2.Model.Member", b =>
+                {
+                    b.Navigation("EventMembers");
                 });
 #pragma warning restore 612, 618
         }

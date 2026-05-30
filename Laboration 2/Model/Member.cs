@@ -1,4 +1,6 @@
-﻿namespace Laboration_2.Model
+﻿using System.Collections.ObjectModel;
+
+namespace Laboration_2.Model
 {
     public class Member
     {
@@ -12,6 +14,7 @@
         public bool IsActive { get; private set; }
 
         public DateTime CreatedDate { get; set; }
+        public ObservableCollection<EventMember> EventMembers { get; set; } = new();
 
         public Member()
         {

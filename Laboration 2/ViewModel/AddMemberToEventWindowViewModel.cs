@@ -1,5 +1,6 @@
 ﻿using Laboration_2.Model;
 using Laboration_2.MVVM;
+using Laboration_2.Service;
 using System.Collections.ObjectModel;
 
 namespace Laboration_2.ViewModel
@@ -20,14 +21,19 @@ namespace Laboration_2.ViewModel
         public string TbParticipants => $"Deltagare: {SelectedEvent.CurrentParticipants}/{SelectedEvent.MaxParticipants}";
         public Member SelectedMember { get; set; }
 
+        private readonly EventService _eventService;
+
         public AddMemberToEventWindowViewModel(Event selectedEvent, ObservableCollection<Member> members)
         {
+            _eventService = new EventService();
             SelectedEvent = selectedEvent;
-            ValidMembers = members.Where(m => !SelectedEvent.Participants.Contains(m)).ToList();
+            ValidMembers = members.Where(m => !SelectedEvent.Participants.Any(p => p.Id == m.Id))
+                .OrderBy(m => m.Name)
+                .ToList();
             ValidMembers = ValidMembers.OrderBy(m => m.Name).ToList();
         }
 
-        public RelayCommand btnAddMember => new RelayCommand(execute => btnAddMember_Click());
+        public RelayCommand btnAddMember => new RelayCommand(async execute => await btnAddMember_Click());
         public RelayCommand btnCloseWindow => new RelayCommand(execute => BtnCloseWindow());
 
         private void BtnCloseWindow()
@@ -35,11 +41,12 @@ namespace Laboration_2.ViewModel
             RequestClose.Invoke();
         }
 
-        private void btnAddMember_Click()
+        private async Task btnAddMember_Click()
         {
             if (!(SelectedMember == null))
             {
-                SelectedEvent.AddParticipant(SelectedMember);
+                //SelectedEvent.AddParticipant(SelectedMember);
+                await _eventService.AddParticipantAsync(SelectedEvent.Id, SelectedMember.Id);
                 RequestClose.Invoke();
             }
         }

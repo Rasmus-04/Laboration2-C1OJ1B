@@ -18,21 +18,27 @@ namespace Laboration_2.ViewModel
         {
             this.parentWindow = parentWindow;
             _memberService = new MemberService();
+            _gameService = new GameService();
+            _eventService = new EventService();
             _ = LoadMembersAsync();
+            _ = LoadAllGamesAsync();
+            _ = LoadAllEventsAsync();
         }
         private readonly MemberService _memberService;
+        private readonly GameService _gameService;
+        private readonly EventService _eventService;
 
         private ObservableCollection<Member> members = new ObservableCollection<Member>();
         private ObservableCollection<Game> allGames = new ObservableCollection<Game>();
         private ObservableCollection<Event> allEvents = new ObservableCollection<Event>();
 
-        public RelayCommand btnCreateMember => new RelayCommand(execute => CreateMember());
-        public RelayCommand btnCreateGame => new RelayCommand(execute => CreateGame());
-        public RelayCommand btnCreateEvent => new RelayCommand(execute => CreateEvent());
+        public RelayCommand btnCreateMember => new RelayCommand(async execute => await CreateMember());
+        public RelayCommand btnCreateGame => new RelayCommand(async execute => await CreateGame());
+        public RelayCommand btnCreateEvent => new RelayCommand(async execute => await CreateEvent());
         public RelayCommand btnGenerateTestData => new RelayCommand(execute => GenerateTestData());
-        public RelayCommand btnRemoveMember => new RelayCommand(execute => RemoveMember());
-        public RelayCommand btnRemoveGame => new RelayCommand(execute => RemoveGame());
-        public RelayCommand btnRemoveEvent => new RelayCommand(execute => RemoveEvent());
+        public RelayCommand btnRemoveMember => new RelayCommand(async execute => await RemoveMember());
+        public RelayCommand btnRemoveGame => new RelayCommand(async execute => await RemoveGame());
+        public RelayCommand btnRemoveEvent => new RelayCommand(async execute => await RemoveEvent());
         public RelayCommand btnEventInfo => new RelayCommand(execute => ShowEventInfo());
         public RelayCommand btnAddMemberToEvent => new RelayCommand(execute => AddMemberToEvent());
 
@@ -70,19 +76,19 @@ namespace Laboration_2.ViewModel
             set { members = value; }
         }
 
-        public ObservableCollection<Game> AllaSpel
+        public ObservableCollection<Game> AllGames
         {
             get { return allGames; }
             set { allGames = value; }
         }
 
-        public ObservableCollection<Event> AllaAktiviteter
+        public ObservableCollection<Event> AllEvents
         {
             get { return allEvents; }
             set { allEvents = value; }
         }
 
-        private async void CreateMember()
+        private async Task CreateMember()
         {
             RegisterMemberWindow addMemberWindow = new RegisterMemberWindow(parentWindow);
             parentWindow.Opacity = .4;
@@ -96,7 +102,7 @@ namespace Laboration_2.ViewModel
             parentWindow.Opacity = 1;
         }
 
-        private void CreateGame()
+        private async Task CreateGame()
         {
             CreateGameWindow nyttSpelWindow = new CreateGameWindow(parentWindow);
             parentWindow.Opacity = .4;
@@ -104,30 +110,32 @@ namespace Laboration_2.ViewModel
 
             if (result == true)
             {
-                AllaSpel.Add(nyttSpelWindow.CreatedGame);
+                await _gameService.AddAsync(nyttSpelWindow.CreatedGame);
+                await LoadAllGamesAsync();
             }
             parentWindow.Opacity = 1;
         }
 
-        private void CreateEvent()
+        private async Task CreateEvent()
         {
-            CreateEventWindow NyttEventWindow = new CreateEventWindow(parentWindow, AllaSpel);
+            CreateEventWindow NewEventWindow = new CreateEventWindow(parentWindow, AllGames);
             parentWindow.Opacity = .4;
-            bool? result = NyttEventWindow.ShowDialog();
+            bool? result = NewEventWindow.ShowDialog();
 
             if (result == true)
             {
-                AllaAktiviteter.Add(NyttEventWindow.CreatedEvent);
+                await _eventService.AddEventAsync(NewEventWindow.CreatedEvent);
+                await LoadAllEventsAsync();
             }
             parentWindow.Opacity = 1;
         }
 
         private void GenerateTestData()
         {
-            TestData.GenerateAllData(Members, AllaSpel, AllaAktiviteter);
+            TestData.GenerateAllData(Members, AllGames, AllEvents);
         }
 
-        private async void RemoveMember()
+        private async Task RemoveMember()
         {
             if (SelectedMemberItem == null)
                 return;
@@ -139,40 +147,43 @@ namespace Laboration_2.ViewModel
             }
         }
 
-        private void RemoveGame()
+        private async Task RemoveGame()
         {
             if (SelectedGameItem == null)
                 return;
             MessageBoxResult result = MessageBox.Show("Är du säker att du vill ta bort detta spel?", "Confirm Deletion", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
-                AllaSpel.Remove(SelectedGameItem);
+                await _gameService.RemoveAsync(SelectedGameItem);
+                await LoadAllGamesAsync();
             }
         }
 
-        private void RemoveEvent()
+        private async Task RemoveEvent()
         {
             if (SelectedEventItem == null)
                 return;
             MessageBoxResult result = MessageBox.Show("Är du säker att du vill ta bort denna Aktivitet?", "Confirm Deletion", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
-                AllaAktiviteter.Remove(SelectedEventItem);
+                await _eventService.RemoveAsync(SelectedEventItem);
+                await LoadAllEventsAsync();
             }
         }
 
-        private void ShowEventInfo()
+        private async void ShowEventInfo()
         {
             if (SelectedEventItem == null)
                 return;
 
-            EventInfoWindow deltagareWindow = new EventInfoWindow(parentWindow, SelectedEventItem);
+            EventInfoWindow deltagareWindow = new EventInfoWindow(parentWindow, SelectedEventItem, _eventService);
             parentWindow.Opacity = .4;
             deltagareWindow.ShowDialog();
+            await LoadAllEventsAsync();
             parentWindow.Opacity = 1;
         }
 
-        private void AddMemberToEvent()
+        private async void AddMemberToEvent()
         {
             if (SelectedEventItem == null)
                 return;
@@ -181,6 +192,7 @@ namespace Laboration_2.ViewModel
 
             parentWindow.Opacity = .4;
             deltagareWindow.ShowDialog();
+            await LoadAllEventsAsync();
             parentWindow.Opacity = 1;
         }
 
@@ -190,9 +202,31 @@ namespace Laboration_2.ViewModel
 
             var dbMembers = await _memberService.GetAllAsync();
 
-            foreach (var member in dbMembers)
+            foreach (Member member in dbMembers)
             {
                 Members.Add(member);
+            }
+        }
+        public async Task LoadAllGamesAsync()
+        {
+            AllGames.Clear();
+
+            var dbGames = await _gameService.GetAllAsync();
+
+            foreach (Game game in dbGames)
+            {
+                AllGames.Add(game);
+            }
+        }
+        public async Task LoadAllEventsAsync()
+        {
+            AllEvents.Clear();
+
+            var dbEvents = await _eventService.GetAllEventsAsync(); ;
+
+            foreach (Event dbEvent in dbEvents)
+            {
+                AllEvents.Add(dbEvent);
             }
         }
     }

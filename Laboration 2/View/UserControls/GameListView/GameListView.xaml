@@ -11,7 +11,7 @@
             <RowDefinition/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <ListView ItemsSource="{Binding AllaSpel}" Name="lvSpel" SelectionMode="Single" SelectedItem="{Binding SelectedGameItem}">
+        <ListView ItemsSource="{Binding AllGames}" Name="lvSpel" SelectionMode="Single" SelectedItem="{Binding SelectedGameItem}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Titel" DisplayMemberBinding="{Binding Titel}" Width="75"/>
