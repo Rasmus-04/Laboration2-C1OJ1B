@@ -1,8 +1,7 @@
 ﻿using Laboration_2.Model;
+using Laboration_2.ViewModel;
 using System.Collections.ObjectModel;
 using System.Windows;
-using System.Xml.Linq;
-using Laboration_2.ViewModel;
 
 namespace Laboration_2.View.Windows.CreateEventWindow
 {

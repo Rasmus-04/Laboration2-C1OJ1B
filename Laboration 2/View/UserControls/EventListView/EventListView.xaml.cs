@@ -1,7 +1,4 @@
-﻿using Laboration_2.Model;
-using Laboration_2.View.Windows.AddMemberToEventWindow;
-using Laboration_2.View.Windows.EventInfoWindow;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;

@@ -1,11 +1,6 @@
 ﻿using Laboration_2.Model;
 using Laboration_2.MVVM;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
 using System.Windows;
-using System.Xml.Linq;
 
 namespace Laboration_2.ViewModel
 {

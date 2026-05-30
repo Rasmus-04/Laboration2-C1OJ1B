@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Laboration_2.Model
+﻿namespace Laboration_2.Model
 {
     public class Game
     {

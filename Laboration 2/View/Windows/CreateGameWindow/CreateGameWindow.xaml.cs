@@ -1,6 +1,6 @@
 ﻿using Laboration_2.Model;
-using System.Windows;
 using Laboration_2.ViewModel;
+using System.Windows;
 
 namespace Laboration_2.View.Windows.CreateGameWindow
 {

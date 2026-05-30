@@ -1,10 +1,10 @@
 ﻿using Laboration_2.Model;
 using Laboration_2.MVVM;
+using Laboration_2.View.Windows.AddMemberToEventWindow;
 using Laboration_2.View.Windows.CreateEventWindow;
 using Laboration_2.View.Windows.CreateGameWindow;
 using Laboration_2.View.Windows.EventInfoWindow;
 using Laboration_2.View.Windows.RegisterMemberWindow;
-using Laboration_2.View.Windows.AddMemberToEventWindow;
 using System.Collections.ObjectModel;
 using System.Windows;
 

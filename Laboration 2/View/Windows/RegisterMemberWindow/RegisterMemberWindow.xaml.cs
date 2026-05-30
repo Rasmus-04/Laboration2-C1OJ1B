@@ -1,6 +1,5 @@
 ﻿using Laboration_2.Model;
 using Laboration_2.ViewModel;
-using System.Collections.ObjectModel;
 using System.Windows;
 
 namespace Laboration_2.View.Windows.RegisterMemberWindow
