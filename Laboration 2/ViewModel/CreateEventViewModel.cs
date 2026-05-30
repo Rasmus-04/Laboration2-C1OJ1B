@@ -1,11 +1,7 @@
 ﻿using Laboration_2.Model;
 using Laboration_2.MVVM;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace Laboration_2.ViewModel
 {
@@ -46,18 +42,22 @@ namespace Laboration_2.ViewModel
 
         private void AddEvent_Click()
         {
-            if (string.IsNullOrEmpty(TbEventTitel))
-                MessageBox.Show("Namn måste vara ifyllt.", "Felaktig information", MessageBoxButton.OK, MessageBoxImage.Information);
-            else if (!int.TryParse(TbMaxParticepents, out _))
-                MessageBox.Show("Max Deltagare måste vara ett giltigt tal.", "Felaktig information", MessageBoxButton.OK, MessageBoxImage.Information);
-            else if (DpDate == null)
-                MessageBox.Show("Datum måste vara ifyllt.", "Felaktig information", MessageBoxButton.OK, MessageBoxImage.Information);
-            else if (CbGame == null)
-                MessageBox.Show("Spel måste vara ifyllt.", "Felaktig information", MessageBoxButton.OK, MessageBoxImage.Information);
-            else
+            try
             {
                 CreatedEvent = new Event(TbEventTitel, DpDate, CbGame, int.Parse(TbMaxParticepents));
                 RequestSaveAndClose.Invoke();
+            }
+            catch (Exception ex) when (
+                ex is FormatException ||
+                ex is ArgumentException)
+            {
+                MessageBox.Show("Max deltagare måste vara giltiga heltal.", "Fel", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{ex.Message}", "Fel", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
         }
     }

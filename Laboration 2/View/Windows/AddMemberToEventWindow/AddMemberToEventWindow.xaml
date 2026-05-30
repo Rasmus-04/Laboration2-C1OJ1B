@@ -20,22 +20,22 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Vertical" Grid.Column="0">
-                <TextBlock Text="Titel: chess tunering" Name="tbTitel"/>
-                <TextBlock Text="Spel: Chess" Name="tbSpel"/>
+                <TextBlock Text="{Binding TbTitel}" Name="tbTitel"/>
+                <TextBlock Text="{Binding TbGame}" Name="tbSpel"/>
             </StackPanel>
             <StackPanel Orientation="Vertical" Grid.Column="1" Margin="10,0,0,0">
-                <TextBlock Text="Datum: 02/06/2026" Name="tbDatum"/>
-                <TextBlock Text="Deltagare 10/30" Name="tbDeltagare"/>
+                <TextBlock Text="{Binding TbDate}" Name="tbDatum"/>
+                <TextBlock Text="{Binding TbParticipants}" Name="tbDeltagare"/>
             </StackPanel>
         </Grid>
         <StackPanel Orientation="Vertical" Grid.Row="1">
             <Label Content="Välj Medlem"/>
-            <ComboBox Name="cbMedlem" Width="320"  HorizontalAlignment="Left" Margin="5,0,0,0" DisplayMemberPath="Name"/>
+            <ComboBox Name="cbMedlem" Width="320"  HorizontalAlignment="Left" Margin="5,0,0,0" DisplayMemberPath="Name" ItemsSource="{Binding ValidMembers}" SelectedItem="{Binding SelectedMember}"/>
         </StackPanel>
         
         <StackPanel Orientation="Horizontal" Margin="5" Grid.Row="2">
-            <Button Content="Lägg Till" Margin="5" Height="30" Name="btnAddMember" Click="btnAddMember_Click"/>
-            <Button Content="Avbryt" Margin="5" Height="30" Name="btnCancel" Click="btnCancel_Click"/>
+            <Button Content="Lägg Till" Margin="5" Height="30" Name="btnAddMember" Command="{Binding btnAddMember}"/>
+            <Button Content="Avbryt" Margin="5" Height="30" Name="btnCancel" Command="{Binding btnCloseWindow}"/>
         </StackPanel>
     </Grid>
 </Window>

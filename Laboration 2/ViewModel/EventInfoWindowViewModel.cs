@@ -1,5 +1,5 @@
-﻿using Laboration_2.MVVM;
-using Laboration_2.Model;
+﻿using Laboration_2.Model;
+using Laboration_2.MVVM;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
@@ -8,7 +8,7 @@ namespace Laboration_2.ViewModel
 {
     internal class EventInfoWindowViewModel : ViewModelBase
     {
-        private Event aktivitet;
+        private Event selectedEvent;
 
         public ObservableCollection<Member> Members { get; }
         public RelayCommand btnRemoveMemberFromEvent => new RelayCommand(execute => RemoveMember());
@@ -24,17 +24,17 @@ namespace Laboration_2.ViewModel
             }
         }
 
-        public string Titel => $"Namn: {aktivitet.Name}";
-        public string Datum => $"Datum: {aktivitet.EventDate}";
-        public string Spel => $"Spel: {aktivitet.EventGame.Titel}";
-        public string Deltagare => $"Deltagare: {aktivitet.CurrentParticipants}/{aktivitet.MaxParticipants}";
+        public string Titel => $"Namn: {selectedEvent.Name}";
+        public string EventDate => $"Datum: {selectedEvent.EventDate}";
+        public string EventGame => $"Spel: {selectedEvent.EventGame.Titel}";
+        public string EventParticepents => $"Deltagare: {selectedEvent.CurrentParticipants}/{selectedEvent.MaxParticipants}";
 
         public ICommand RemoveMemberCommand { get; }
 
-        public EventInfoWindowViewModel(Event aktivitet)
+        public EventInfoWindowViewModel(Event selectedEvent)
         {
-            this.aktivitet = aktivitet;
-            Members = aktivitet.Participants;
+            this.selectedEvent = selectedEvent;
+            Members = selectedEvent.Participants;
         }
 
         private void RemoveMember()
@@ -50,9 +50,9 @@ namespace Laboration_2.ViewModel
 
             if (result == MessageBoxResult.Yes)
             {
-                aktivitet.RemoveParticipant(SelectedMember);
+                selectedEvent.RemoveParticipant(SelectedMember);
 
-                OnPropertyChanged(nameof(Deltagare));
+                OnPropertyChanged(nameof(EventParticepents));
             }
         }
     }

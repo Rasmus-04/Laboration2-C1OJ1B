@@ -21,11 +21,11 @@
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Vertical" Grid.Column="0">
                 <TextBlock Text="{Binding Titel}" Name="tbTitel"/>
-                <TextBlock Text="{Binding Spel}" Name="tbSpel"/>
+                <TextBlock Text="{Binding EventGame}" Name="tbSpel"/>
             </StackPanel>
             <StackPanel Orientation="Vertical" Grid.Column="1" Margin="10,0,0,0">
-                <TextBlock Text="{Binding Datum}" Name="tbDatum"/>
-                <TextBlock Text="{Binding Deltagare}" Name="tbDeltagare"/>
+                <TextBlock Text="{Binding EventDate}" Name="tbDatum"/>
+                <TextBlock Text="{Binding EventParticepents}" Name="tbDeltagare"/>
             </StackPanel>
         </Grid>
 
