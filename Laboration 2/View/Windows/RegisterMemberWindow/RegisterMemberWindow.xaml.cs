@@ -13,12 +13,12 @@ namespace Laboration_2.View.Windows.RegisterMemberWindow
 
         public Member CreatedMember { get; private set; }
 
-        public RegisterMemberWindow(Window parentWindow, ObservableCollection<Member> members)
+        public RegisterMemberWindow(Window parentWindow)
         {
             InitializeComponent();
             Owner = parentWindow;
 
-            RegisterMemberWindowViewModel viewModel = new RegisterMemberWindowViewModel(members);
+            RegisterMemberWindowViewModel viewModel = new RegisterMemberWindowViewModel();
 
             viewModel.RequestSaveAndClose += () =>
             {

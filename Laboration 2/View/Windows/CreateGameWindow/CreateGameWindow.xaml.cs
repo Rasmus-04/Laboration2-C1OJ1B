@@ -1,5 +1,6 @@
 ﻿using Laboration_2.Model;
 using System.Windows;
+using Laboration_2.ViewModel;
 
 namespace Laboration_2.View.Windows.CreateGameWindow
 {
@@ -9,38 +10,28 @@ namespace Laboration_2.View.Windows.CreateGameWindow
     public partial class CreateGameWindow : Window
     {
 
-        public Game CreatedSpel { get; private set; }
+        public Game CreatedGame { get; private set; }
 
         public CreateGameWindow(Window parentWindow)
         {
             InitializeComponent();
             Owner = parentWindow;
-        }
+            CreateGameWindowViewModel viewModel = new CreateGameWindowViewModel();
 
-        private void CancelBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
-        private void AddUserBtn_Click(object sender, RoutedEventArgs e)
-        {
-            string titel = txtTitel.Text;
-            int max;
-            int min;
-
-            if (string.IsNullOrEmpty(titel))
-                MessageBox.Show("Titel måste vara ifyllt.", "Felaktig Titel", MessageBoxButton.OK, MessageBoxImage.Information);
-            else if (!int.TryParse(maxPlayers.Text, out max))
-                MessageBox.Show("Alla fält måste vara ifyllda!", "Felaktig inmatning", MessageBoxButton.OK, MessageBoxImage.Information);
-            else if (!int.TryParse(minPlayers.Text, out min))
-                MessageBox.Show("Alla fält måste vara ifyllda!", "Felaktig inmatning", MessageBoxButton.OK, MessageBoxImage.Information);
-            else
+            viewModel.RequestSaveAndClose += () =>
             {
-                Game newSpel = new Game(titel, max, min);
-                CreatedSpel = newSpel;
+                CreatedGame = viewModel.CreatedGame;
                 DialogResult = true;
                 Close();
-            }
+            };
+
+            viewModel.RequestClose += () =>
+            {
+                DialogResult = false;
+                Close();
+            };
+
+            DataContext = viewModel;
         }
     }
 }

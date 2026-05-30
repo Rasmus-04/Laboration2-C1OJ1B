@@ -9,15 +9,15 @@
     <Grid>
         <StackPanel>
             <Label Content="Spel titel"/>
-            <TextBox Name="txtTitel" Width="200" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+            <TextBox Name="txtTitel" Width="200" HorizontalAlignment="Left" Margin="5,0,0,0" Text="{Binding TbTitel, UpdateSourceTrigger=PropertyChanged}"/>
             <Label Content="Max Spelare"/>
-            <TextBox Name="maxPlayers" Width="200" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+            <TextBox Name="maxPlayers" Width="200" HorizontalAlignment="Left" Margin="5,0,0,0" Text="{Binding TbMaxPlayers, UpdateSourceTrigger=PropertyChanged}"/>
             <Label Content="Min seplare"/>
-            <TextBox Name="minPlayers" Width="200" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+            <TextBox Name="minPlayers" Width="200" HorizontalAlignment="Left" Margin="5,0,0,0" Text="{Binding TbMinPlayers, UpdateSourceTrigger=PropertyChanged}"/>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                <Button Content="Lägg Till" Margin="5,10,0,0" Width="60" HorizontalAlignment="Left" Name="AddUserBtn" Click="AddUserBtn_Click"/>
-                <Button Content="Avbryt" Margin="5,10,0,0" Width="60" HorizontalAlignment="Left" Name="CancelBtn" Click="CancelBtn_Click"/>
+                <Button Content="Lägg Till" Margin="5,10,0,0" Width="60" HorizontalAlignment="Left" Name="btnCreateGame" Command="{Binding btnCreateGame}"/>
+                <Button Content="Avbryt" Margin="5,10,0,0" Width="60" HorizontalAlignment="Left" Name="CancelBtn" Command="{Binding btnCloseWindow}"/>
             </StackPanel>
         </StackPanel>
     </Grid>

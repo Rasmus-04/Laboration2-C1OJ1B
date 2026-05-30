@@ -80,7 +80,7 @@ namespace Laboration_2.ViewModel
 
         private void CreateMember()
         {
-            RegisterMemberWindow addMemberWindow = new RegisterMemberWindow(parentWindow, members);
+            RegisterMemberWindow addMemberWindow = new RegisterMemberWindow(parentWindow);
             parentWindow.Opacity = .4;
             bool? result = addMemberWindow.ShowDialog();
 
@@ -99,7 +99,7 @@ namespace Laboration_2.ViewModel
 
             if (result == true)
             {
-                AllaSpel.Add(nyttSpelWindow.CreatedSpel);
+                AllaSpel.Add(nyttSpelWindow.CreatedGame);
             }
             parentWindow.Opacity = 1;
         }

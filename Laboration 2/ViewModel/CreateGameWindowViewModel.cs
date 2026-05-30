@@ -2,68 +2,71 @@
 using Laboration_2.MVVM;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 using System.Xml.Linq;
 
 namespace Laboration_2.ViewModel
 {
-    internal class RegisterMemberWindowViewModel : ViewModelBase
+    internal class CreateGameWindowViewModel : ViewModelBase
     {
+        public Game CreatedGame { get; private set; }
+
         public event Action RequestClose;
         public event Action RequestSaveAndClose;
 
-        public Member CreatedMember { get; private set; }
-
-        private string name;
-        public string Name
-        {
-            get => name;
-            set
-            {
-                name = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string age;
-        public string Age
-        {
-            get => age;
-            set
-            {
-                age = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string email;
-        public string Email
-        {
-            get => email;
-            set
-            {
-                email = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public RelayCommand btnAddUserCommand => new RelayCommand(execute => AddUserBtn_Click());
+        public RelayCommand btnCreateGame => new RelayCommand(execute => CreateGame());
         public RelayCommand btnCloseWindow => new RelayCommand(execute => BtnCloseWindow());
 
-        private void AddUserBtn_Click()
+
+        private string tbTitel;
+        public string TbTitel
+        {
+            get => tbTitel;
+            set
+            {
+                tbTitel = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string tbMaxPlayers;
+        public string TbMaxPlayers
+        {
+            get => tbMaxPlayers;
+            set
+            {
+                tbMaxPlayers = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string tbMinPlayers;
+        public string TbMinPlayers
+        {
+            get => tbMinPlayers;
+            set
+            {
+                tbMinPlayers = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private void CreateGame()
         {
             try
             {
-                CreatedMember = new Member(int.Parse(Age), Name, Email);
+                Game newGame = new Game(TbTitel, int.Parse(TbMaxPlayers), int.Parse(TbMinPlayers));
+                CreatedGame = newGame;
                 RequestSaveAndClose?.Invoke();
             }
-            catch(Exception ex) when(
+            catch (Exception ex) when (
                 ex is FormatException ||
                 ex is ArgumentException)
             {
-                MessageBox.Show("Ålder måste vara ett giltigt heltal.", "Felaktig ålder", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Max och Min spelare måste vara giltiga heltal.", "Fel", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
             catch (Exception ex)
