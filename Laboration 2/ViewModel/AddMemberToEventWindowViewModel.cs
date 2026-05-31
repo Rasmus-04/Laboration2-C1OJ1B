@@ -45,7 +45,7 @@ namespace Laboration_2.ViewModel
         {
             if (!(SelectedMember == null))
             {
-                //SelectedEvent.AddParticipant(SelectedMember);
+                SelectedEvent.AddParticipant(SelectedMember);
                 await _eventService.AddParticipantAsync(SelectedEvent.Id, SelectedMember.Id);
                 RequestClose.Invoke();
             }

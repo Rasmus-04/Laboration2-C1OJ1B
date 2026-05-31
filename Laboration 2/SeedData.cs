@@ -71,82 +71,81 @@ namespace Laboration_2
                 );
 
                 await context.SaveChangesAsync();
+            }
+            if (!context.Events.Any())
+            {
+                var catan = context.Games.First(g => g.Titel == "Catan");
+                var mars = context.Games.First(g => g.Titel == "Terraforming Mars");
+                var ticket = context.Games.First(g => g.Titel == "Ticket to Ride");
+                var pandemic = context.Games.First(g => g.Titel == "Pandemic");
 
-                if (!context.Events.Any())
-                {
-                    var catan = context.Games.First(g => g.Titel == "Catan");
-                    var mars = context.Games.First(g => g.Titel == "Terraforming Mars");
-                    var ticket = context.Games.First(g => g.Titel == "Ticket to Ride");
-                    var pandemic = context.Games.First(g => g.Titel == "Pandemic");
+                context.Events.AddRange(
+                    new Event("Fredagsspel", DateTime.Today.AddDays(3), catan, 4),
+                    new Event("Strategikväll", DateTime.Today.AddDays(7), mars, 5),
+                    new Event("Familjespel", DateTime.Today.AddDays(10), ticket, 5),
+                    new Event("Co-op kväll", DateTime.Today.AddDays(14), pandemic, 4)
+                );
 
-                    context.Events.AddRange(
-                        new Event("Fredagsspel", DateTime.Today.AddDays(3), catan, 4),
-                        new Event("Strategikväll", DateTime.Today.AddDays(7), mars, 5),
-                        new Event("Familjespel", DateTime.Today.AddDays(10), ticket, 5),
-                        new Event("Co-op kväll", DateTime.Today.AddDays(14), pandemic, 4)
-                    );
+                await context.SaveChangesAsync();
+            }
 
-                    await context.SaveChangesAsync();
-                }
+            if (!context.EventMembers.Any())
+            {
+                var members = context.Members.ToList();
+                var events = context.Events.ToList();
 
-                if (!context.EventMembers.Any())
-                {
-                    var members = context.Members.ToList();
-                    var events = context.Events.ToList();
+                context.EventMembers.AddRange(
 
-                    context.EventMembers.AddRange(
+                    // Fredagsspel
+                    new EventMember
+                    {
+                        EventId = events[0].Id,
+                        MemberId = members[0].Id
+                    },
+                    new EventMember
+                    {
+                        EventId = events[0].Id,
+                        MemberId = members[1].Id
+                    },
 
-                        // Fredagsspel
-                        new EventMember
-                        {
-                            EventId = events[0].Id,
-                            MemberId = members[0].Id
-                        },
-                        new EventMember
-                        {
-                            EventId = events[0].Id,
-                            MemberId = members[1].Id
-                        },
+                    // Strategikväll
+                    new EventMember
+                    {
+                        EventId = events[1].Id,
+                        MemberId = members[2].Id
+                    },
+                    new EventMember
+                    {
+                        EventId = events[1].Id,
+                        MemberId = members[3].Id
+                    },
+                    new EventMember
+                    {
+                        EventId = events[1].Id,
+                        MemberId = members[4].Id
+                    },
 
-                        // Strategikväll
-                        new EventMember
-                        {
-                            EventId = events[1].Id,
-                            MemberId = members[2].Id
-                        },
-                        new EventMember
-                        {
-                            EventId = events[1].Id,
-                            MemberId = members[3].Id
-                        },
-                        new EventMember
-                        {
-                            EventId = events[1].Id,
-                            MemberId = members[4].Id
-                        },
+                    // Familjespel
+                    new EventMember
+                    {
+                        EventId = events[2].Id,
+                        MemberId = members[5].Id
+                    },
+                    new EventMember
+                    {
+                        EventId = events[2].Id,
+                        MemberId = members[6].Id
+                    },
 
-                        // Familjespel
-                        new EventMember
-                        {
-                            EventId = events[2].Id,
-                            MemberId = members[5].Id
-                        },
-                        new EventMember
-                        {
-                            EventId = events[2].Id,
-                            MemberId = members[6].Id
-                        },
+                    // Co-op kväll
+                    new EventMember
+                    {
+                        EventId = events[3].Id,
+                        MemberId = members[7].Id
+                    }
+                );
 
-                        // Co-op kväll
-                        new EventMember
-                        {
-                            EventId = events[3].Id,
-                            MemberId = members[7].Id
-                        }
-                    );
-
-                    await context.SaveChangesAsync();
-                }
+                await context.SaveChangesAsync();
             }
         }
     }
