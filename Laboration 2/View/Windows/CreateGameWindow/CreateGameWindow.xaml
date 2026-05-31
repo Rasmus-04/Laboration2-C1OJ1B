@@ -16,7 +16,7 @@
             <TextBox Name="minPlayers" Width="200" HorizontalAlignment="Left" Margin="5,0,0,0" Text="{Binding TbMinPlayers, UpdateSourceTrigger=PropertyChanged}"/>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                <Button Content="Lägg Till" Margin="5,10,0,0" Width="60" HorizontalAlignment="Left" Name="btnCreateGame" Command="{Binding btnCreateGame}"/>
+                <Button Content="{Binding ButtonText}" Margin="5,10,0,0" Width="60" HorizontalAlignment="Left" Name="btnCreateGame" Command="{Binding btnCreateGame}"/>
                 <Button Content="Avbryt" Margin="5,10,0,0" Width="60" HorizontalAlignment="Left" Name="CancelBtn" Command="{Binding btnCloseWindow}"/>
             </StackPanel>
         </StackPanel>

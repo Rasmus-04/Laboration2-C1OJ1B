@@ -33,5 +33,28 @@ namespace Laboration_2.View.Windows.CreateGameWindow
 
             DataContext = viewModel;
         }
+
+        // För att redigera ett spel, skicka in det som en parameter i konstruktorn och fyll i textfälten med dess data
+        public CreateGameWindow(Window parentWindow, Game game)
+        {
+            InitializeComponent();
+            Owner = parentWindow;
+
+            CreateGameWindowViewModel viewModel = new CreateGameWindowViewModel(game);
+
+            viewModel.RequestSaveAndClose += () =>
+            {
+                DialogResult = true;
+                Close();
+            };
+
+            viewModel.RequestClose += () =>
+            {
+                DialogResult = false;
+                Close();
+            };
+
+            DataContext = viewModel;
+        }
     }
 }

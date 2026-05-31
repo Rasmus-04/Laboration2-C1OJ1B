@@ -20,7 +20,7 @@ namespace Laboration_2.Model
 
         public int CurrentParticipants
         {
-            get { return Participants.Count(); }
+            get { return EventMembers.Count(); }
         }
         public IEnumerable<Member> Participants => EventMembers.Select(em => em.Member);
 

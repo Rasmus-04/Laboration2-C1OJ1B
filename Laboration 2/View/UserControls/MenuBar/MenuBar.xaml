@@ -16,7 +16,7 @@
                 <Button Name="btnCreateEvent" Content="Ny Aktivitet" Margin="5" 
                 Height="30" Command="{Binding btnCreateEvent}"/>
                 <Button Name="btnTestData" Content="Test Data" Margin="5" 
-                Height="30" Command="{Binding btnGenerateTestData}"/>
+                Height="30" Command="{Binding btnGenerateTestData}" Visibility="Hidden"/>
             </StackPanel>
         </Grid>
     </Grid>

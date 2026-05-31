@@ -7,6 +7,7 @@ namespace Laboration_2.ViewModel
     internal class CreateGameWindowViewModel : ViewModelBase
     {
         public Game CreatedGame { get; private set; }
+        private Game _gameToEdit;
 
         public event Action RequestClose;
         public event Action RequestSaveAndClose;
@@ -14,6 +15,20 @@ namespace Laboration_2.ViewModel
         public RelayCommand btnCreateGame => new RelayCommand(execute => CreateGame());
         public RelayCommand btnCloseWindow => new RelayCommand(execute => BtnCloseWindow());
 
+        public string ButtonText { get; set; } = "Lägg till";
+
+        public CreateGameWindowViewModel()
+        {
+        }
+
+        public CreateGameWindowViewModel(Game game)
+        {
+            _gameToEdit = game;
+            TbTitel = game.Titel;
+            TbMaxPlayers = game.MaxPlayers.ToString();
+            TbMinPlayers = game.MinPlayers.ToString();
+            ButtonText = "Spara";
+        }
 
         private string tbTitel;
         public string TbTitel
@@ -51,23 +66,32 @@ namespace Laboration_2.ViewModel
 
         private void CreateGame()
         {
-            try
+            if (_gameToEdit != null)
             {
-                Game newGame = new Game(TbTitel, int.Parse(TbMaxPlayers), int.Parse(TbMinPlayers));
-                CreatedGame = newGame;
+                _gameToEdit.Titel = TbTitel;
+                _gameToEdit.MaxPlayers = int.Parse(TbMaxPlayers);
+                _gameToEdit.MinPlayers = int.Parse(TbMinPlayers);
                 RequestSaveAndClose?.Invoke();
             }
-            catch (Exception ex) when (
-                ex is FormatException ||
-                ex is ArgumentException)
+            else
             {
-                MessageBox.Show("Max och Min spelare måste vara giltiga heltal.", "Fel", MessageBoxButton.OK, MessageBoxImage.Information);
-                return;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"{ex.Message}", "Fel", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
+                try
+                {
+                    CreatedGame = new Game(TbTitel, int.Parse(TbMaxPlayers), int.Parse(TbMinPlayers));
+                    RequestSaveAndClose?.Invoke();
+                }
+                catch (Exception ex) when (
+                    ex is FormatException ||
+                    ex is ArgumentException)
+                {
+                    MessageBox.Show("Max och Min spelare måste vara giltiga heltal.", "Fel", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"{ex.Message}", "Fel", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
             }
         }
 
