@@ -20,10 +20,15 @@ namespace Laboration_2.ViewModel
             _memberService = new MemberService();
             _gameService = new GameService();
             _eventService = new EventService();
-            _ = LoadMembersAsync();
-            _ = LoadAllGamesAsync();
-            _ = LoadAllEventsAsync();
         }
+
+        public async Task InitializeLoadData()
+        {
+            await LoadMembersAsync();
+            await LoadAllGamesAsync();
+            await LoadAllEventsAsync();
+        }
+
         private readonly MemberService _memberService;
         private readonly GameService _gameService;
         private readonly EventService _eventService;
@@ -38,7 +43,6 @@ namespace Laboration_2.ViewModel
         public RelayCommand btnEditGame => new RelayCommand(async execute => await EditGame());
         public RelayCommand btnCreateEvent => new RelayCommand(async execute => await CreateEvent());
         public RelayCommand btnEditEvent => new RelayCommand(async execute => await EditEvent());
-        public RelayCommand btnGenerateTestData => new RelayCommand(execute => GenerateTestData());
         public RelayCommand btnRemoveMember => new RelayCommand(async execute => await RemoveMember());
         public RelayCommand btnRemoveGame => new RelayCommand(async execute => await RemoveGame());
         public RelayCommand btnRemoveEvent => new RelayCommand(async execute => await RemoveEvent());
@@ -194,11 +198,6 @@ namespace Laboration_2.ViewModel
             }
 
             parentWindow.Opacity = 1;
-        }
-
-        private void GenerateTestData()
-        {
-            TestData.GenerateAllData(Members, AllGames, AllEvents);
         }
 
         private async Task RemoveMember()

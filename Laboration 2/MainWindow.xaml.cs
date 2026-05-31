@@ -10,6 +10,14 @@ namespace Laboration_2
             InitializeComponent();
             MainWindowViewModel viewModel = new MainWindowViewModel(Window.GetWindow(this));
             DataContext = viewModel;
+            Loaded += async (_, _) =>
+            {
+                if (DataContext is MainWindowViewModel vm)
+                {
+                    await vm.InitializeLoadData();
+                }
+            };
+
         }
     }
 }
