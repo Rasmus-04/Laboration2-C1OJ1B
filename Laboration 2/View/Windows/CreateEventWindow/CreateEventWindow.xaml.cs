@@ -32,5 +32,27 @@ namespace Laboration_2.View.Windows.CreateEventWindow
             };
             DataContext = viewModel;
         }
+
+        public CreateEventWindow(Window parentWindow, ObservableCollection<Game> allGames, Event eventToEdit)
+        {
+            InitializeComponent();
+            Owner = parentWindow;
+
+            CreateEventViewModel viewModel = new CreateEventViewModel(allGames, eventToEdit);
+
+            viewModel.RequestSaveAndClose += () =>
+            {
+                DialogResult = true;
+                Close();
+            };
+
+            viewModel.RequestClose += () =>
+            {
+                DialogResult = false;
+                Close();
+            };
+
+            DataContext = viewModel;
+        }
     }
 }

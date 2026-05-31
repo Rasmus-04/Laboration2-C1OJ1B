@@ -11,7 +11,11 @@
             <Label Content="Namn på aktivitet"/>
             <TextBox Name="txtTitel" Width="200" HorizontalAlignment="Left" Margin="5,0,0,0" Text="{Binding TbEventTitel}"/>
             <Label Content="Datum"/>
-            <DatePicker Name="datePicker" Margin="0,0,0,0" Width="200" Text="{Binding DpDate, StringFormat='yyyy-MM-dd'}"/>
+            <DatePicker Name="datePicker"
+            Width="200"
+            SelectedDate="{Binding DpDate,
+                                   Mode=TwoWay,
+                                   UpdateSourceTrigger=PropertyChanged}"/>
             <Label Content="Max Deltagare"/>
             <TextBox Name="txtMaxDeltagare" Width="200" HorizontalAlignment="Left" Margin="5,0,0,0" Text="{Binding TbMaxParticepents}"/>
             <Label Content="Spel"/>
@@ -19,7 +23,7 @@
             
             
             <StackPanel Orientation="Horizontal" Margin="0,10">
-                <Button Content="Lägg Till" Margin="5" Name="btnAddEvent" Command="{Binding btnAddEvent}"/>
+                <Button Content="{Binding ButtonText}" Margin="5" Name="btnAddEvent" Command="{Binding btnAddEvent}"/>
                 <Button Content="Avbryt" Margin="5" Name="Cancel" Command="{Binding btnCloseWindow}"/>
             </StackPanel>
         </StackPanel>

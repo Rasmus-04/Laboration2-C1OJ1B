@@ -70,6 +70,8 @@ namespace Laboration_2.ViewModel
             {
                 if (_memberToEdit != null)
                 {
+                    CreatedMember = new Member(int.Parse(Age), Name, Email);
+
                     _memberToEdit.Name = Name;
                     _memberToEdit.Email = Email;
                     _memberToEdit.Age = int.Parse(Age);

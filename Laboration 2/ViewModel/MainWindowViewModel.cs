@@ -37,6 +37,7 @@ namespace Laboration_2.ViewModel
         public RelayCommand btnCreateGame => new RelayCommand(async execute => await CreateGame());
         public RelayCommand btnEditGame => new RelayCommand(async execute => await EditGame());
         public RelayCommand btnCreateEvent => new RelayCommand(async execute => await CreateEvent());
+        public RelayCommand btnEditEvent => new RelayCommand(async execute => await EditEvent());
         public RelayCommand btnGenerateTestData => new RelayCommand(execute => GenerateTestData());
         public RelayCommand btnRemoveMember => new RelayCommand(async execute => await RemoveMember());
         public RelayCommand btnRemoveGame => new RelayCommand(async execute => await RemoveGame());
@@ -151,6 +152,26 @@ namespace Laboration_2.ViewModel
                 await _eventService.AddEventAsync(NewEventWindow.CreatedEvent);
                 await LoadAllEventsAsync();
             }
+            parentWindow.Opacity = 1;
+        }
+
+        private async Task EditEvent()
+        {
+            if (SelectedEventItem == null)
+                return;
+
+            CreateEventWindow window = new CreateEventWindow(parentWindow, AllGames, SelectedEventItem);
+
+            parentWindow.Opacity = .4;
+
+            bool? result = window.ShowDialog();
+            if (result == true)
+            {
+                await _eventService.UpdateEventAsync(SelectedEventItem);
+
+                await LoadAllEventsAsync();
+            }
+
             parentWindow.Opacity = 1;
         }
 

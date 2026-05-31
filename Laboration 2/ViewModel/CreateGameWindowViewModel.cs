@@ -70,6 +70,8 @@ namespace Laboration_2.ViewModel
             {
                 if (_gameToEdit != null)
                 {
+                    CreatedGame = new Game(TbTitel, int.Parse(TbMaxPlayers), int.Parse(TbMinPlayers));
+
                     _gameToEdit.Titel = TbTitel;
                     _gameToEdit.MaxPlayers = int.Parse(TbMaxPlayers);
                     _gameToEdit.MinPlayers = int.Parse(TbMinPlayers);

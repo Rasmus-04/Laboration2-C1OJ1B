@@ -9,7 +9,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
         <ListView ItemsSource="{Binding AllEvents}" Name="lvAktiviteter" SelectionMode="Single" SelectedItem="{Binding SelectedEventItem}">
             <ListView.View>
@@ -23,11 +23,39 @@
             </ListView.View>
         </ListView>
 
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal"
+                Grid.Row="0"
+                Margin="5">
 
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5">
-            <Button Content="Ta bort Aktivitet" Name="btnRemoveActivity" Command="{Binding btnRemoveEvent}"/>
-            <Button Content="Visa Deltagare" Name="btnVisaDeltagare" Margin="10,0,0,0" Command="{Binding btnEventInfo}"/>
-            <Button Content="Lägg Till Deltagare" Name="btnAddMember" Margin="10,0,0,0" Command="{Binding btnAddMemberToEvent}"/>
-        </StackPanel>
+                <Button Content="Lägg Till Deltagare"
+                    Command="{Binding btnAddMemberToEvent}"
+                    Width="150"
+                    Margin="0,0,10,0"/>
+
+                <Button Content="Visa Deltagare"
+                    Command="{Binding btnEventInfo}"
+                    Width="150"
+                    Margin="0,0,10,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5">
+
+
+                <Button Content="Redigera"
+        Command="{Binding btnEditEvent}"
+        Width="150"
+        Margin="0,0,10,0"/>
+
+                <Button Content="Ta bort Aktivitet"
+        Command="{Binding btnRemoveEvent}"
+        Width="150"
+        Margin="0,0,10,0"/>
+
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

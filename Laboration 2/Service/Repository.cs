@@ -31,6 +31,8 @@ namespace Laboration_2.Service
 
         public async Task UpdateAsync(T entity)
         {
+            _context.ChangeTracker.Clear();
+
             _context.Set<T>().Update(entity);
             await _context.SaveChangesAsync();
         }

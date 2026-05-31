@@ -53,5 +53,18 @@ namespace Laboration_2.Service
                 .ThenInclude(em => em.Member)
                 .ToListAsync();
         }
+
+        public async Task UpdateEventAsync(Event updatedEvent)
+        {
+            var dbEvent = await _context.Events
+                .FirstAsync(e => e.Id == updatedEvent.Id);
+
+            dbEvent.Name = updatedEvent.Name;
+            dbEvent.EventDate = updatedEvent.EventDate;
+            dbEvent.GameId = updatedEvent.GameId;
+            dbEvent.MaxParticipants = updatedEvent.MaxParticipants;
+
+            await _context.SaveChangesAsync();
+        }
     }
 }
