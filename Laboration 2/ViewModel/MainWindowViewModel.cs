@@ -48,7 +48,7 @@ namespace Laboration_2.ViewModel
         public RelayCommand btnRemoveEvent => new RelayCommand(async execute => await RemoveEvent());
         public RelayCommand btnEventInfo => new RelayCommand(execute => ShowEventInfo());
         public RelayCommand btnAddMemberToEvent => new RelayCommand(execute => AddMemberToEvent());
-
+        
         private Member selectedMemberItem;
         public Member SelectedMemberItem
         {
@@ -289,9 +289,21 @@ namespace Laboration_2.ViewModel
         {
             AllEvents.Clear();
 
-            var dbEvents = await _eventService.GetAllEventsAsync(); ;
+            var dbEvents = await _eventService.GetAllEventsAsync();
 
             foreach (Event dbEvent in dbEvents)
+            {
+                AllEvents.Add(dbEvent);
+            }
+        }
+
+        private void SortEventsByDate()
+        {
+            var sortedEvents = AllEvents.OrderBy(e => e.EventDate).ToList();
+
+            AllEvents.Clear();
+
+            foreach (Event dbEvent in sortedEvents)
             {
                 AllEvents.Add(dbEvent);
             }
