@@ -2,6 +2,7 @@
 
 namespace Laboration_2.Service
 {
+    // Hanterar spelrelaterade databasoperationer
     public class GameService : Repository<Game>
     {
     }
