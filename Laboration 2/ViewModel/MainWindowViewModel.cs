@@ -33,6 +33,7 @@ namespace Laboration_2.ViewModel
         private ObservableCollection<Event> allEvents = new ObservableCollection<Event>();
 
         public RelayCommand btnCreateMember => new RelayCommand(async execute => await CreateMember());
+        public RelayCommand btnEditMember => new RelayCommand(async execute => await EditMember());
         public RelayCommand btnCreateGame => new RelayCommand(async execute => await CreateGame());
         public RelayCommand btnEditGame => new RelayCommand(async execute => await EditGame());
         public RelayCommand btnCreateEvent => new RelayCommand(async execute => await CreateEvent());
@@ -103,6 +104,28 @@ namespace Laboration_2.ViewModel
             parentWindow.Opacity = 1;
         }
 
+        private async Task EditMember()
+        {
+            if (SelectedMemberItem == null)
+                return;
+
+            RegisterMemberWindow window = new RegisterMemberWindow(parentWindow, SelectedMemberItem);
+
+            parentWindow.Opacity = .4;
+
+            bool? result = window.ShowDialog();
+
+            if (result == true)
+            {
+                await _memberService.UpdateAsync(SelectedMemberItem);
+
+                await LoadMembersAsync();
+                await LoadAllEventsAsync();
+            }
+
+            parentWindow.Opacity = 1;
+        }
+
         private async Task CreateGame()
         {
             CreateGameWindow nyttSpelWindow = new CreateGameWindow(parentWindow);
@@ -146,6 +169,7 @@ namespace Laboration_2.ViewModel
             {
                 await _gameService.UpdateAsync(SelectedGameItem);
                 await LoadAllGamesAsync();
+                await LoadAllEventsAsync();
             }
 
             parentWindow.Opacity = 1;
@@ -165,6 +189,7 @@ namespace Laboration_2.ViewModel
             {
                 await _memberService.RemoveAsync(SelectedMemberItem);
                 await LoadMembersAsync();
+                await LoadAllEventsAsync();
             }
         }
 
@@ -177,6 +202,7 @@ namespace Laboration_2.ViewModel
             {
                 await _gameService.RemoveAsync(SelectedGameItem);
                 await LoadAllGamesAsync();
+                await LoadAllEventsAsync();
             }
         }
 

@@ -16,7 +16,7 @@
             <TextBox Name="txtEmail" Width="200" HorizontalAlignment="Left" Margin="5,0,0,0" Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"/>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                <Button Content="Lägg Till" Margin="5,10,0,0" Width="60" HorizontalAlignment="Left" Name="AddUserBtn" Command="{Binding btnAddUserCommand}"/>
+                <Button Content="{Binding ButtonText}" Margin="5,10,0,0" Width="60" HorizontalAlignment="Left" Name="AddUserBtn" Command="{Binding btnAddUserCommand}"/>
                 <Button Content="Avbryt" Margin="5,10,0,0" Width="60" HorizontalAlignment="Left" Name="CancelBtn" Command="{Binding btnCloseWindow}"/>
             </StackPanel>
         </StackPanel>

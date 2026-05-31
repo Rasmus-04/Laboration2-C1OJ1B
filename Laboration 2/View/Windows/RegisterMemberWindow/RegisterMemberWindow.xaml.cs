@@ -33,5 +33,26 @@ namespace Laboration_2.View.Windows.RegisterMemberWindow
             };
             DataContext = viewModel;
         }
+        public RegisterMemberWindow(Window parentWindow, Member member)
+        {
+            InitializeComponent();
+            Owner = parentWindow;
+
+            RegisterMemberWindowViewModel viewModel = new RegisterMemberWindowViewModel(member);
+
+            viewModel.RequestSaveAndClose += () =>
+            {
+                DialogResult = true;
+                Close();
+            };
+
+            viewModel.RequestClose += () =>
+            {
+                DialogResult = false;
+                Close();
+            };
+
+            DataContext = viewModel;
+        }
     }
 }

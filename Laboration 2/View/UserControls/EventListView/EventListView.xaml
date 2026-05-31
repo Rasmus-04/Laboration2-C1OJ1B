@@ -16,7 +16,7 @@
                 <GridView>
                     <GridViewColumn Header="Namn" DisplayMemberBinding="{Binding Name}" Width="75"/>
                     <GridViewColumn Header="Datum" DisplayMemberBinding="{Binding EventDate}" Width="75"/>
-                    <GridViewColumn Header="Spel" DisplayMemberBinding="{Binding EventGame}" Width="75" />
+                    <GridViewColumn Header="Spel" DisplayMemberBinding="{Binding EventGame.Titel}" Width="75" />
                     <GridViewColumn Header="Antal Deltagare" DisplayMemberBinding="{Binding CurrentParticipants}" Width="90" />
 
                 </GridView>

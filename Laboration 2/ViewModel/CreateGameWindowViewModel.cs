@@ -66,34 +66,36 @@ namespace Laboration_2.ViewModel
 
         private void CreateGame()
         {
-            if (_gameToEdit != null)
+            try
             {
-                _gameToEdit.Titel = TbTitel;
-                _gameToEdit.MaxPlayers = int.Parse(TbMaxPlayers);
-                _gameToEdit.MinPlayers = int.Parse(TbMinPlayers);
-                RequestSaveAndClose?.Invoke();
-            }
-            else
-            {
-                try
+                if (_gameToEdit != null)
+                {
+                    _gameToEdit.Titel = TbTitel;
+                    _gameToEdit.MaxPlayers = int.Parse(TbMaxPlayers);
+                    _gameToEdit.MinPlayers = int.Parse(TbMinPlayers);
+                    RequestSaveAndClose?.Invoke();
+                }
+                else
                 {
                     CreatedGame = new Game(TbTitel, int.Parse(TbMaxPlayers), int.Parse(TbMinPlayers));
                     RequestSaveAndClose?.Invoke();
                 }
-                catch (Exception ex) when (
-                    ex is FormatException ||
-                    ex is ArgumentException)
-                {
-                    MessageBox.Show("Max och Min spelare måste vara giltiga heltal.", "Fel", MessageBoxButton.OK, MessageBoxImage.Information);
-                    return;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"{ex.Message}", "Fel", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
+                    
+            }
+            catch (Exception ex) when (
+                ex is FormatException ||
+                ex is ArgumentException)
+            {
+                MessageBox.Show("Max och Min spelare måste vara giltiga heltal.", "Fel", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{ex.Message}", "Fel", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
         }
+        
 
         private void BtnCloseWindow()
         {

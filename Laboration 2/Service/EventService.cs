@@ -47,6 +47,7 @@ namespace Laboration_2.Service
         public async Task<List<Event>> GetAllEventsAsync()
         {
             return await _context.Events
+                .AsNoTracking()
                 .Include(e => e.EventGame)
                 .Include(e => e.EventMembers)
                 .ThenInclude(em => em.Member)

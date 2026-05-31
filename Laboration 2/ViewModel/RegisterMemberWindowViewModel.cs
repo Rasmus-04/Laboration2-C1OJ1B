@@ -6,8 +6,25 @@ namespace Laboration_2.ViewModel
 {
     internal class RegisterMemberWindowViewModel : ViewModelBase
     {
+
+        public RegisterMemberWindowViewModel()
+        {
+        }
+        public RegisterMemberWindowViewModel(Member member)
+        {
+            _memberToEdit = member;
+
+            Name = member.Name;
+            Email = member.Email;
+            Age = member.Age.ToString();
+
+            ButtonText = "Spara";
+        }
         public event Action RequestClose;
         public event Action RequestSaveAndClose;
+
+        private Member? _memberToEdit;
+        public string ButtonText { get; set; } = "Lägg till";
 
         public Member CreatedMember { get; private set; }
 
@@ -51,8 +68,20 @@ namespace Laboration_2.ViewModel
         {
             try
             {
-                CreatedMember = new Member(int.Parse(Age), Name, Email);
-                RequestSaveAndClose?.Invoke();
+                if (_memberToEdit != null)
+                {
+                    _memberToEdit.Name = Name;
+                    _memberToEdit.Email = Email;
+                    _memberToEdit.Age = int.Parse(Age);
+
+                    RequestSaveAndClose?.Invoke();
+                }
+                else
+                {
+                    CreatedMember = new Member(int.Parse(Age),Name,Email);
+
+                    RequestSaveAndClose?.Invoke();
+                }
             }
             catch(Exception ex) when(
                 ex is FormatException ||
