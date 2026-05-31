@@ -48,7 +48,7 @@ namespace Laboration_2.ViewModel
         public RelayCommand btnRemoveEvent => new RelayCommand(async execute => await RemoveEvent());
         public RelayCommand btnEventInfo => new RelayCommand(execute => ShowEventInfo());
         public RelayCommand btnAddMemberToEvent => new RelayCommand(execute => AddMemberToEvent());
-        
+        public RelayCommand btnSortEventsByDate => new RelayCommand(execute => SortEventsByDate());
         private Member selectedMemberItem;
         public Member SelectedMemberItem
         {
