@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Laboration_2.Service
 {
+    // Hanterar aktivitetsrelaterade databasoperationer
     public class EventService : Repository<Event>
     {
         public async Task AddEventAsync(Event eventToAdd)
