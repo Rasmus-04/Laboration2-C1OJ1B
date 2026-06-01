@@ -24,7 +24,9 @@ namespace Laboration_2.Service
                     em.MemberId == memberId);
 
             if (exists)
+            {
                 return;
+            }
 
             _context.EventMembers.Add(new EventMember
             {
