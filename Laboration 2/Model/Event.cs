@@ -17,7 +17,13 @@ namespace Laboration_2.Model
 
         public int MaxParticipants { get; set; }
         public ObservableCollection<EventMember> EventMembers { get; set; }= new();
-
+        public bool IsFull
+        {
+            get
+            {
+                return EventMembers.Count >= MaxParticipants;
+            }
+        }
         public int CurrentParticipants
         {
             get { return EventMembers.Count(); }
