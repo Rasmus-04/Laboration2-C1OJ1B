@@ -13,7 +13,7 @@ namespace Laboration_2
             if (!context.Members.Any())
             {
                 context.Members.AddRange(
-                    new Member(22, "Rasmus", "rasmus@test.se"),
+                    new Member(22, "Viktor", "Viktor@test.se"),
                     new Member(25, "Anna", "anna@test.se"),
                     new Member(31, "Erik", "erik@test.se"),
                     new Member(28, "Lisa", "lisa@test.se"),
