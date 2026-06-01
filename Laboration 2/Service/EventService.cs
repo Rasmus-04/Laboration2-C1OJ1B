@@ -67,5 +67,10 @@ namespace Laboration_2.Service
 
             await _context.SaveChangesAsync();
         }
+
+        public async Task<int> GetEventCountAsync()
+        {
+            return await _context.Events.CountAsync();
+        }
     }
 }
