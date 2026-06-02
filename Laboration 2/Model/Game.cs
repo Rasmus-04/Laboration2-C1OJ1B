@@ -38,6 +38,7 @@
         }
         public bool IsMultiplayer => MaxPlayers > 1;
         public bool IsSinglePlayer => MinPlayers == 1;
+        public int PlayerRange => MaxPlayers - MinPlayers;
         public override string ToString()
         {
             return $"{Titel}";
