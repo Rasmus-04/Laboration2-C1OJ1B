@@ -37,6 +37,7 @@
             return games.GroupBy(g => g.MaxPlayers).ToList();
         }
         public bool IsMultiplayer => MaxPlayers > 1;
+        public bool IsSinglePlayer => MinPlayers == 1;
         public override string ToString()
         {
             return $"{Titel}";
