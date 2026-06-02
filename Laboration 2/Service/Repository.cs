@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Laboration_2.Service
 {
+    // Generisk repository för grundläggande databasoperationer
     public class Repository<T> where T : class
     {
         protected readonly ApplicationDbContext _context;
