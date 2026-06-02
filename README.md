@@ -52,7 +52,6 @@ Projektet är utvecklat med:
 * .NET
 * WPF
 * MVVM
-* CommunityToolkit.Mvvm
 * Entity Framework Core
 * SQL Server LocalDB
 
