@@ -21,6 +21,8 @@ namespace Laboration_2
             await SeedData.SeedAsync();
             System.Diagnostics.Debug.WriteLine("Database seeded successfully");
             base.OnStartup(e);
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
         }
     }
 
