@@ -70,10 +70,13 @@ Innehåller domänklasser såsom:
 Innehåller:
 
 * ApplicationDbContext
-* Repository-klasser
 * SeedData
 
 ### Services
+
+Innehåller:
+
+* Repository-klasser
 
 Ansvarar för applikationslogik och kommunikation med dataåtkomstlagret.
 
