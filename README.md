@@ -123,8 +123,6 @@ Projektet följer MVVM-principen:
 * Services ansvarar för verksamhetslogik.
 * Data-lagret ansvarar för databasåtkomst via Entity Framework.
 
-Detta ger en tydlig separation mellan presentation, applikationslogik och dataåtkomst.
-
 ## Centralt arbetsflöde
 
 Registrera deltagare till event:
