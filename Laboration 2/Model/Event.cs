@@ -4,19 +4,16 @@ using System.Runtime.CompilerServices;
 
 namespace Laboration_2.Model
 {
-    public class Event : INotifyPropertyChanged
+    public class Event
     {
         public int Id { get; set; }
-
         public string Name { get; set; }
-
         public DateTime EventDate { get; set; }
-
         public Game EventGame { get; set; }
         public int GameId { get; set; }
 
         public int MaxParticipants { get; set; }
-        public ObservableCollection<EventMember> EventMembers { get; set; }= new();
+        public ObservableCollection<EventMember> EventMembers { get; set; } = new();
         public bool IsFull
         {
             get
@@ -59,8 +56,6 @@ namespace Laboration_2.Model
 
             if (Participants.Count() >= MaxParticipants)
                 return;
-
-            OnPropertyChanged(nameof(CurrentParticipants));
         }
 
         public void RemoveParticipant(Member member)
@@ -70,9 +65,6 @@ namespace Laboration_2.Model
             if (eventMember != null)
             {
                 EventMembers.Remove(eventMember);
-
-                OnPropertyChanged(nameof(CurrentParticipants));
-                OnPropertyChanged(nameof(Participants));
             }
         }
 
@@ -82,13 +74,6 @@ namespace Laboration_2.Model
             return events
                 .OrderBy(a => a.EventDate)
                 .ToList();
-        }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
